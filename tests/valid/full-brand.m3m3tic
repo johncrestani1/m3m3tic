@@ -1,0 +1,36 @@
+m3m3tic:
+  version: "0.1.0"
+  created_at: "2026-05-15T00:00:00Z"
+  generator:
+    tool: "Bonfire Terminal"
+    version: "2.7.245"
+
+entity:
+  legal_name: "Test Corp, Inc."
+  brand_name: "TestBrand"
+  jurisdiction: "US"
+  price_range: "$$"
+
+brand:
+  visual:
+    primary_colors:
+      - "#FF5733"
+    secondary_colors:
+      - "#FFFFFF"
+  voice:
+    primary_tone: "professional"
+    good_examples:
+      - "A clean, compliant example."
+    bad_examples:
+      - "BUY NOW MIRACLE CURE!!!"
+  terminology:
+    prohibited_terms:
+      - term: "miracle"
+        reason: "Unsubstantiated claim"
+
+legal:
+  disclaimers:
+    - title: "General"
+      text: "Results may vary."
+  jurisdictions:
+    - "US"

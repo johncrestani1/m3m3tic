@@ -1,0 +1,126 @@
+m3m3tic:
+  version: "0.1.0"
+  created_at: "2026-05-15T12:00:00Z"
+  generator:
+    tool: "Bonfire Terminal"
+    version: "2.7.245"
+
+entity:
+  legal_name: "NovaCRM, Inc."
+  brand_name: "NovaCRM"
+  domain: "novacrm.io"
+  jurisdiction: "US"
+  industry: "saas"
+  vertical: "technology"
+
+brand:
+  visual:
+    tokens:
+      color.primary:
+        $type: color
+        $value: "#6366F1"
+      color.secondary:
+        $type: color
+        $value: "#0F172A"
+      color.accent:
+        $type: color
+        $value: "#F59E0B"
+      typography.heading:
+        $type: fontFamily
+        $value: "Inter"
+      typography.body:
+        $type: fontFamily
+        $value: "Inter"
+    primary_colors:
+      - "#6366F1"
+      - "#0F172A"
+    secondary_colors:
+      - "#FFFFFF"
+      - "#64748B"
+    accent_colors:
+      - "#F59E0B"
+
+  voice:
+    personality: >
+      Confident, clear, and helpful. We explain complex things simply.
+      We're the expert friend who never talks down to you.
+    primary_tone: "confident"
+    secondary_tones:
+      - "clear"
+      - "helpful"
+    avoided_tones:
+      - "salesy"
+      - "corporate"
+      - "jargon-heavy"
+    uses_contractions: true
+    context_overrides:
+      social:
+        tone: "conversational"
+      email:
+        tone: "professional"
+      ad:
+        tone: "direct"
+    good_examples:
+      - "Close deals 40% faster with AI-powered pipeline management."
+      - "Your CRM should work for you, not the other way around."
+    bad_examples:
+      - "REVOLUTIONARY AI-POWERED SYNERGY PLATFORM!!!"
+      - "Leverage our best-in-class solution to optimize your workflow paradigm."
+
+  terminology:
+    preferred_terms:
+      - preferred: "customers"
+        alternatives: ["users", "clients"]
+        contexts: ["marketing"]
+      - preferred: "pipeline"
+        alternatives: ["funnel", "sales process"]
+        contexts: ["product"]
+    prohibited_terms:
+      - term: "guaranteed ROI"
+        reason: "Cannot guarantee financial outcomes"
+      - term: "never crashes"
+        reason: "Absolute reliability claims are unsubstantiable"
+    brand_name_casing: "NovaCRM"
+    company_legal_name: "NovaCRM, Inc."
+
+platforms:
+  meta:
+    campaign:
+      special_ad_categories:
+        - "NONE"
+      objective_allowed:
+        - OUTCOME_LEADS
+        - OUTCOME_TRAFFIC
+      default_status: PAUSED
+    creative:
+      primary_text:
+        max_length: 125
+      headline:
+        max_length: 40
+      cta_allowed:
+        - LEARN_MORE
+        - SIGN_UP
+    validation:
+      dry_run_required: true
+      publish_default: PAUSED
+
+legal:
+  privacy:
+    pii_in_ad_copy_blocked: true
+    sensitive_attributes_blocked:
+      - financial_status
+
+  disclaimers:
+    - title: "Performance Claims"
+      text: "Results may vary. Based on average outcomes across NovaCRM customers in 2025."
+      url: "https://novacrm.io/terms"
+
+  jurisdictions:
+    - "US"
+    - "GB"
+    - "DE"
+
+enforcement:
+  fail_exit_code: 5
+  policy_packs:
+    - "ftc-endorsement"

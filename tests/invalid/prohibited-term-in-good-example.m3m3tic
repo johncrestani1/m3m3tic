@@ -1,0 +1,14 @@
+# INVALID: good_examples contain a prohibited term — policy violation
+m3m3tic:
+  version: "0.1.0"
+
+brand:
+  voice:
+    good_examples:
+      - "Our miracle shake cures everything!"
+  terminology:
+    prohibited_terms:
+      - term: "miracle"
+        reason: "FTC considers 'miracle' an unsubstantiated claim"
+      - term: "cure"
+        reason: "FDA prohibits disease cure claims"

@@ -1,0 +1,10 @@
+# INVALID: colors must be 6-digit hex with # prefix
+m3m3tic:
+  version: "0.1.0"
+
+brand:
+  visual:
+    primary_colors:
+      - "red"
+      - "not-a-color"
+      - "#GGG"

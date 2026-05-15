@@ -1,0 +1,6 @@
+# INVALID: missing required m3m3tic.version field
+m3m3tic:
+  created_at: "2026-05-15T00:00:00Z"
+
+entity:
+  brand_name: "Test"

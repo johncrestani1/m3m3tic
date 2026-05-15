@@ -1,0 +1,6 @@
+# INVALID: top-level section not prefixed with x_ and not in spec
+m3m3tic:
+  version: "0.1.0"
+
+custom_stuff:
+  foo: "bar"

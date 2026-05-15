@@ -1,0 +1,498 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://m3m3tic.dev/schemas/v0.1.0/m3m3tic.schema.json",
+  "title": ".m3m3tic File",
+  "description": "Schema for the .m3m3tic brand identity and legal compliance file format",
+  "type": "object",
+  "required": ["m3m3tic"],
+  "properties": {
+    "m3m3tic": {
+      "type": "object",
+      "required": ["version"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Spec version this file conforms to (semver)"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "modified_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "generator": {
+          "type": "object",
+          "properties": {
+            "tool": { "type": "string" },
+            "version": { "type": "string" }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "entity": {
+      "type": "object",
+      "properties": {
+        "legal_name": { "type": "string" },
+        "brand_name": { "type": "string" },
+        "domain": { "type": "string" },
+        "jurisdiction": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "ISO 3166-1 alpha-2 country code"
+        },
+        "industry": { "type": "string" },
+        "vertical": { "type": "string" },
+        "category": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "name": { "type": "string" }
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" }
+            }
+          }
+        },
+        "price_range": {
+          "type": "string",
+          "enum": ["$", "$$", "$$$", "$$$$"]
+        },
+        "franchise": {
+          "type": "object",
+          "properties": {
+            "is_chain": { "type": "boolean" },
+            "global_brand_name": { "type": "string" },
+            "franchise_brand_name": { "type": "string" },
+            "partner_count": { "type": "integer", "minimum": 0 }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "brand": {
+      "type": "object",
+      "properties": {
+        "visual": {
+          "type": "object",
+          "properties": {
+            "tokens": {
+              "type": "object",
+              "description": "DTCG-compatible design tokens",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "$type": { "type": "string" },
+                  "$value": {}
+                }
+              }
+            },
+            "primary_colors": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              }
+            },
+            "secondary_colors": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              }
+            },
+            "accent_colors": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              }
+            },
+            "forbidden_colors": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              }
+            },
+            "logo_url": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "voice": {
+          "type": "object",
+          "properties": {
+            "personality": { "type": "string" },
+            "primary_tone": { "type": "string" },
+            "secondary_tones": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "avoided_tones": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "uses_contractions": { "type": "boolean" },
+            "context_overrides": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "tone": { "type": "string" }
+                }
+              }
+            },
+            "good_examples": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "bad_examples": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "additionalProperties": false
+        },
+        "terminology": {
+          "type": "object",
+          "properties": {
+            "preferred_terms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["preferred"],
+                "properties": {
+                  "preferred": { "type": "string" },
+                  "alternatives": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  },
+                  "contexts": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                }
+              }
+            },
+            "prohibited_terms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["term", "reason"],
+                "properties": {
+                  "term": { "type": "string" },
+                  "reason": { "type": "string" }
+                }
+              }
+            },
+            "product_names": {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            },
+            "brand_name_casing": { "type": "string" },
+            "company_legal_name": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "platforms": {
+      "type": "object",
+      "properties": {
+        "meta": {
+          "type": "object",
+          "properties": {
+            "account": {
+              "type": "object",
+              "properties": {
+                "business_id": { "type": "string" },
+                "ad_account_id": { "type": "string" },
+                "page_id": { "type": "string" },
+                "instagram_account_id": { "type": "string" }
+              }
+            },
+            "campaign": {
+              "type": "object",
+              "properties": {
+                "objective_allowed": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "OUTCOME_APP_PROMOTION",
+                      "OUTCOME_AWARENESS",
+                      "OUTCOME_ENGAGEMENT",
+                      "OUTCOME_LEADS",
+                      "OUTCOME_SALES",
+                      "OUTCOME_TRAFFIC"
+                    ]
+                  }
+                },
+                "default_status": {
+                  "type": "string",
+                  "enum": ["ACTIVE", "PAUSED"]
+                },
+                "special_ad_categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "CREDIT",
+                      "EMPLOYMENT",
+                      "HOUSING",
+                      "FINANCIAL_PRODUCTS_SERVICES",
+                      "ISSUES_ELECTIONS_POLITICS",
+                      "ONLINE_GAMBLING_AND_GAMING",
+                      "NONE"
+                    ]
+                  }
+                }
+              }
+            },
+            "creative": {
+              "type": "object",
+              "properties": {
+                "primary_text": {
+                  "type": "object",
+                  "properties": {
+                    "max_length": { "type": "integer", "minimum": 1 },
+                    "required_disclosures": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    }
+                  }
+                },
+                "headline": {
+                  "type": "object",
+                  "properties": {
+                    "max_length": { "type": "integer", "minimum": 1 }
+                  }
+                },
+                "description": {
+                  "type": "object",
+                  "properties": {
+                    "max_length": { "type": "integer", "minimum": 1 }
+                  }
+                },
+                "cta_allowed": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "food_styles": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            },
+            "prohibited_patterns": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "severity": {
+                    "type": "string",
+                    "enum": ["block", "warn", "info"]
+                  },
+                  "examples": {
+                    "type": "array",
+                    "items": { "type": "string" }
+                  }
+                }
+              }
+            },
+            "validation": {
+              "type": "object",
+              "properties": {
+                "dry_run_required": { "type": "boolean" },
+                "publish_default": {
+                  "type": "string",
+                  "enum": ["ACTIVE", "PAUSED"]
+                },
+                "fail_exit_code": { "type": "integer" }
+              }
+            },
+            "sponsor_page_id": { "type": "string" },
+            "sponsor_relationship": { "type": "string" },
+            "endorsement_disclosure": { "type": "string" }
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "legal": {
+      "type": "object",
+      "properties": {
+        "ftc": {
+          "type": "object",
+          "properties": {
+            "endorsement_guides": {
+              "type": "object",
+              "properties": {
+                "disclosure_required": { "type": "boolean" },
+                "disclosure_terms": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "disclosure_position": { "type": "string" },
+                "applies_to": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "fda": {
+          "type": "object",
+          "properties": {
+            "health_claims": {
+              "type": "object",
+              "properties": {
+                "disease_claims_blocked": { "type": "boolean" },
+                "required_disclaimer_id": { "type": "string" },
+                "blocked_patterns": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "income_claims": {
+          "type": "object",
+          "properties": {
+            "earnings_claims_require_disclosure": { "type": "boolean" },
+            "prohibited_patterns": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "privacy": {
+          "type": "object",
+          "properties": {
+            "pii_in_ad_copy_blocked": { "type": "boolean" },
+            "sensitive_attributes_blocked": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "disclaimers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["title", "text"],
+            "properties": {
+              "title": { "type": "string" },
+              "text": { "type": "string" },
+              "url": { "type": "string", "format": "uri" }
+            }
+          }
+        },
+        "required_disclosures": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["trigger", "disclosure"],
+            "properties": {
+              "trigger": { "type": "string" },
+              "disclosure": { "type": "string" },
+              "regulation": { "type": "string" }
+            }
+          }
+        },
+        "jurisdictions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z]{2}$"
+          }
+        },
+        "regional_disclaimers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string" },
+              "regulation": { "type": "string" }
+            }
+          }
+        },
+        "regulations": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "reporting": {
+      "type": "object",
+      "properties": {
+        "xbrl": {
+          "type": "object",
+          "properties": {
+            "taxonomy_namespace": { "type": "string", "format": "uri" },
+            "facts": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "properties": {
+                  "concept": { "type": "string" },
+                  "unit": { "type": "string" },
+                  "source": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "c2pa": {
+          "type": "object",
+          "properties": {
+            "assertions": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "enforcement": {
+      "type": "object",
+      "properties": {
+        "fail_exit_code": { "type": "integer" },
+        "severity_levels": { "type": "object" },
+        "policy_packs": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "patternProperties": {
+    "^x_": {
+      "description": "Custom extension sections (must be prefixed with x_)"
+    }
+  },
+  "additionalProperties": false
+}

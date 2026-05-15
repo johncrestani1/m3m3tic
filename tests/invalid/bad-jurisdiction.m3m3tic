@@ -1,0 +1,11 @@
+# INVALID: jurisdiction must be ISO 3166-1 alpha-2 (2 uppercase letters)
+m3m3tic:
+  version: "0.1.0"
+
+entity:
+  jurisdiction: "United States"
+
+legal:
+  jurisdictions:
+    - "USA"
+    - "united kingdom"

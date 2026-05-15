@@ -1,0 +1,307 @@
+m3m3tic:
+  version: "0.1.0"
+  created_at: "2026-05-15T10:30:00Z"
+  modified_at: "2026-05-15T10:30:00Z"
+  generator:
+    tool: "Bonfire Terminal"
+    version: "2.7.245"
+
+entity:
+  legal_name: "Herbalife International of America, Inc."
+  brand_name: "Maria's Herbalife Nutrition"
+  domain: "marias-nutrition.com"
+  jurisdiction: "US"
+  industry: "mlm"
+  vertical: "health"
+  category:
+    id: "197871390225897"
+    name: "Smoothie & Juice Bar"
+  categories:
+    - id: "197871390225897"
+      name: "Smoothie & Juice Bar"
+    - id: "108472109230615"
+      name: "Health Food Store"
+  price_range: "$$"
+  franchise:
+    is_chain: true
+    global_brand_name: "Herbalife Nutrition"
+    franchise_brand_name: "Maria's Herbalife Nutrition"
+    partner_count: 4600000
+
+brand:
+  visual:
+    primary_colors:
+      - "#78BE20"
+      - "#00573F"
+    secondary_colors:
+      - "#FFFFFF"
+      - "#333333"
+    accent_colors:
+      - "#F7941D"
+    forbidden_colors:
+      - "#FF0000"
+      - "#0000FF"
+    logo_url: "assets/maria-herbalife-logo.png"
+
+  voice:
+    personality: >
+      Warm, encouraging, and knowledgeable. Like a friend who happens to know
+      a lot about nutrition. Never clinical or preachy.
+    primary_tone: "friendly"
+    secondary_tones:
+      - "encouraging"
+      - "knowledgeable"
+    avoided_tones:
+      - "clinical"
+      - "aggressive"
+      - "condescending"
+      - "desperate"
+    uses_contractions: true
+    context_overrides:
+      social:
+        tone: "casual"
+      email:
+        tone: "warm"
+      ad:
+        tone: "inviting"
+    good_examples:
+      - "Start your morning right with a smoothie packed with 24g of protein."
+      - "We're here every day 7am-3pm. Come say hi!"
+      - "Our Formula 1 shakes come in 12 delicious flavors."
+    bad_examples:
+      - "LOSE 20 LBS IN 30 DAYS WITH OUR MIRACLE SHAKES!!!"
+      - "Are you tired of being overweight?"
+      - "Make $5000/month working from home!"
+
+  terminology:
+    preferred_terms:
+      - preferred: "nutrition"
+        alternatives: ["diet", "food"]
+        contexts: ["all"]
+      - preferred: "wellness"
+        alternatives: ["health"]
+        contexts: ["marketing"]
+      - preferred: "smoothie"
+        alternatives: ["shake", "drink"]
+        contexts: ["menu", "social"]
+    prohibited_terms:
+      - term: "cure"
+        reason: "FDA prohibits disease cure claims for supplements"
+      - term: "miracle"
+        reason: "FTC considers 'miracle' an unsubstantiated claim"
+      - term: "guaranteed results"
+        reason: "FTC prohibits guaranteed outcome claims"
+      - term: "passive income"
+        reason: "Herbalife settlement prohibits unsupported income claims"
+      - term: "lose X pounds"
+        reason: "Specific weight loss claims require clinical substantiation"
+      - term: "FDA approved"
+        reason: "Supplements are not FDA-approved. Use 'FDA-compliant manufacturing'"
+      - term: "scientifically proven"
+        reason: "Requires cited peer-reviewed studies"
+      - term: "no side effects"
+        reason: "Safety claims require clinical evidence"
+      - term: "quit your job"
+        reason: "Employment-replacement claims violate Herbalife FTC settlement"
+      - term: "financial freedom"
+        reason: "Unsupported income opportunity claim"
+      - term: "be your own boss"
+        reason: "Employment-replacement claim without substantiation"
+      - term: "join my team"
+        reason: "Recruitment-over-product emphasis violates FTC MLM Act"
+    brand_name_casing: "Herbalife Nutrition"
+    product_names:
+      Formula 1: "Formula 1"
+      Prolessa Duo: "Prolessa Duo"
+      Herbal Tea Concentrate: "Herbal Tea Concentrate"
+      Protein Drink Mix: "Protein Drink Mix"
+      Herbalife24: "Herbalife24"
+    company_legal_name: "Herbalife International of America, Inc."
+
+platforms:
+  meta:
+    campaign:
+      special_ad_categories:
+        - "NONE"
+      objective_allowed:
+        - OUTCOME_LEADS
+        - OUTCOME_SALES
+        - OUTCOME_TRAFFIC
+      default_status: PAUSED
+    creative:
+      primary_text:
+        max_length: 125
+        required_disclosures:
+          - ftc_endorsement
+          - ai_generated
+      headline:
+        max_length: 40
+      description:
+        max_length: 30
+      cta_allowed:
+        - LEARN_MORE
+        - SIGN_UP
+        - SHOP_NOW
+      food_styles:
+        - "Vegan"
+        - "Breakfast"
+        - "Food Stands"
+    prohibited_patterns:
+      personal_attributes:
+        severity: block
+        examples:
+          - "Are you struggling with your weight?"
+          - "Do you have diabetes?"
+      unrealistic_outcomes:
+        severity: block
+      before_after_claims:
+        severity: block
+    validation:
+      dry_run_required: true
+      publish_default: PAUSED
+      fail_exit_code: 5
+    sponsor_page_id: "123456789"
+    sponsor_relationship: "independent_distributor"
+    endorsement_disclosure: "#ad | Herbalife Independent Distributor"
+
+legal:
+  ftc:
+    endorsement_guides:
+      disclosure_required: true
+      disclosure_terms:
+        - "ad"
+        - "sponsored"
+        - "affiliate"
+      disclosure_position: before_or_near_claim
+      applies_to:
+        - testimonial
+        - affiliate_link
+        - influencer_content
+
+  fda:
+    health_claims:
+      disease_claims_blocked: true
+      required_disclaimer_id: fda_notice
+      blocked_patterns:
+        - "cure"
+        - "treat diabetes"
+        - "reverse disease"
+
+  income_claims:
+    earnings_claims_require_disclosure: true
+    prohibited_patterns:
+      - "guaranteed income"
+      - "passive income"
+      - "financial freedom guaranteed"
+
+  privacy:
+    pii_in_ad_copy_blocked: true
+    sensitive_attributes_blocked:
+      - health_condition
+      - financial_status
+      - race
+      - religion
+      - age
+
+  disclaimers:
+    - title: "FDA Notice"
+      text: >
+        These statements have not been evaluated by the Food and Drug
+        Administration. This product is not intended to diagnose, treat,
+        cure, or prevent any disease.
+      url: "https://marias-nutrition.com/disclaimer"
+    - title: "Income Disclosure"
+      text: >
+        The incomes stated are not guaranteed. Herbalife distributor
+        compensation depends on many factors. Most distributors who pursue
+        the business opportunity earn less than $200 per month.
+      url: "https://marias-nutrition.com/income-disclosure"
+    - title: "Independent Distributor Notice"
+      text: >
+        Maria's Herbalife Nutrition is operated by an independent Herbalife
+        distributor. Herbalife products are sold exclusively through
+        independent distributors.
+      url: "https://marias-nutrition.com/about"
+
+  required_disclosures:
+    - trigger: "weight loss"
+      disclosure: "Results not typical. Individual results will vary."
+      regulation: "FTC Endorsement Guides"
+    - trigger: "income"
+      disclosure: "Most Herbalife distributors earn less than $200/month."
+      regulation: "Herbalife v. FTC Settlement (2016)"
+    - trigger: "protein"
+      disclosure: "As part of a balanced diet and healthy lifestyle."
+      regulation: "FDA DSHEA"
+    - trigger: "energy"
+      disclosure: "Contains caffeine. Not recommended for children or pregnant women."
+      regulation: "FDA Dietary Guidance"
+    - trigger: "testimonial"
+      disclosure: "Individual results may vary. This is not a guarantee of results."
+      regulation: "FTC Endorsement Guides Section 255.2"
+
+  jurisdictions:
+    - "US"
+    - "CA"
+    - "MX"
+    - "GB"
+    - "AU"
+
+  regional_disclaimers:
+    US:
+      text: "Herbalife Independent Distributor"
+      regulation: "FTC MLM Act (16 CFR Part 437)"
+    CA:
+      text: "This product is a natural health product, not a drug."
+      regulation: "Health Canada NHP Regulations"
+    MX:
+      text: "Distribuidor Independiente de Herbalife"
+      regulation: "PROFECO Consumer Protection"
+    GB:
+      text: "Food supplement. Not a substitute for a varied diet."
+      regulation: "UK Food Standards Agency"
+    AU:
+      text: "This product is not listed on the ARTG."
+      regulation: "TGA Advertising Code"
+
+  regulations:
+    - "FTC Endorsement Guides"
+    - "FDA DSHEA (Dietary Supplement Health and Education Act)"
+    - "FTC MLM Act (16 CFR Part 437)"
+    - "Herbalife v. FTC Settlement (2016)"
+    - "CAN-SPAM Act"
+    - "CCPA (California Consumer Privacy Act)"
+
+reporting:
+  xbrl:
+    taxonomy_namespace: "https://m3m3tic.dev/taxonomy/2026"
+    facts:
+      protocol_fee_revenue:
+        concept: "m3m3tic:ProtocolFeeRevenue"
+        unit: USD
+        source: "settlement.protocol_fee_total"
+      affiliate_commissions:
+        concept: "m3m3tic:AffiliateCommissionExpense"
+        unit: USD
+        source: "settlement.affiliate_payout_total"
+      ad_spend:
+        concept: "m3m3tic:AdvertisingSpend"
+        unit: USD
+        source: "platforms.meta.spend"
+
+provenance:
+  c2pa:
+    assertions:
+      brand_policy_hash:
+        source: "sha256(.m3m3tic)"
+      ai_generation_disclosure:
+        required: true
+      ftc_disclosure_validation:
+        source: "legal.ftc"
+
+enforcement:
+  fail_exit_code: 5
+  policy_packs:
+    - "ftc-endorsement"
+    - "fda-supplement"
+    - "income-claims"

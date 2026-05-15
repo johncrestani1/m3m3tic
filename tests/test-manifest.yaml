@@ -1,0 +1,44 @@
+# Test manifest for .m3m3tic conformance testing
+# Each test case specifies a file and whether it should pass or fail validation
+
+schema_version: "0.1.0"
+
+test_cases:
+  # --- VALID files (must pass JSON Schema validation) ---
+  - file: valid/minimal.m3m3tic
+    expect: pass
+    description: "Minimal valid file with only m3m3tic.version"
+
+  - file: valid/full-brand.m3m3tic
+    expect: pass
+    description: "Full brand with entity, visual, voice, terminology, legal"
+
+  # --- INVALID files (must fail JSON Schema validation) ---
+  - file: invalid/missing-version.m3m3tic
+    expect: fail
+    validation: schema
+    description: "Missing required m3m3tic.version field"
+
+  - file: invalid/bad-color-format.m3m3tic
+    expect: fail
+    validation: schema
+    description: "Colors not in #RRGGBB hex format"
+
+  - file: invalid/bad-jurisdiction.m3m3tic
+    expect: fail
+    validation: schema
+    description: "Jurisdiction not ISO 3166-1 alpha-2"
+
+  - file: invalid/unknown-section.m3m3tic
+    expect: fail
+    validation: schema
+    description: "Unknown top-level section without x_ prefix"
+
+  # --- POLICY failures (pass schema, fail OPA/Rego) ---
+  - file: invalid/prohibited-term-in-good-example.m3m3tic
+    expect: fail
+    validation: policy
+    policies:
+      - ftc-endorsement
+      - fda-supplement
+    description: "Good examples contain prohibited terms"
