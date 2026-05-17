@@ -1,0 +1,226 @@
+m3m3tic:
+  version: "0.2.0"
+  created_at: "2026-05-17T00:00:00Z"
+  generator:
+    tool: "Bonfire Terminal"
+    version: "2.7.246"
+
+entity:
+  legal_name: "Bonfire Terminal Inc."
+  brand_name: "Bonfire"
+  domain: "bonfire.dev"
+  jurisdiction: "US"
+  operating_jurisdictions: ["US", "GB", "EU", "AU", "CA"]
+  registrations:
+    us_ein: "XX-XXXXXXX"
+  industry:
+    iab_content_taxonomy_id: "596"
+    iab_ad_product_taxonomy_id: "1082"
+
+brand:
+  voice:
+    personality: "Technical, direct, zero-bullshit. We build tools for builders."
+    primary_tone: "direct"
+    secondary_tones: ["technical", "confident"]
+    avoided_tones: ["corporate", "salesy", "hype", "desperate"]
+    formality_level: "medium"
+    uses_contractions: true
+    context_overrides:
+      social: { tone: "casual", formality_level: "low" }
+      ad: { tone: "direct", formality_level: "medium" }
+      docs: { tone: "precise", formality_level: "high" }
+    good_examples:
+      - "Ship faster. Break less. One terminal for everything."
+      - "AI chat, messaging bridges, and a Rust daemon that never crashes."
+      - "50+ cyborgs building the future of desktop dev tools."
+    bad_examples:
+      - "REVOLUTIONARY AI-POWERED PLATFORM!!!"
+      - "Unlock your potential with our best-in-class solution!"
+      - "Join thousands of happy users today!"
+
+  terminology:
+    preferred_terms:
+      - { preferred: "cyborg", alternatives: ["user", "customer"] }
+      - { preferred: "daemon", alternatives: ["backend", "server", "service"] }
+      - { preferred: "terminal", alternatives: ["app", "application", "client"] }
+    prohibited_terms:
+      - { term: "free trial", reason: "we use Circle.so mentorship tier as gate, not trials" }
+      - { term: "unlimited", reason: "nothing is unlimited" }
+      - { term: "guaranteed", reason: "no outcome guarantees" }
+      - { term: "passive income", reason: "affiliate work is not passive" }
+      - { term: "get rich", reason: "not what this is" }
+      - { term: "no experience needed", reason: "our tool is for technical users" }
+    brand_name_casing: "Bonfire"
+    product_names:
+      "Bonfire Terminal": "Bonfire Terminal"
+      "M3M3TIC": "M3M3TIC"
+
+  visual:
+    primary_colors: ["#FF6B35", "#1a1a2e"]
+    secondary_colors: ["#ffffff", "#2d2d2d"]
+    accent_colors: ["#FFB347"]
+    forbidden_colors: ["#00FF00", "#FF00FF"]
+    logo_url: "assets/bonfire-logo.svg"
+    fonts:
+      primary: { family: "JetBrains Mono", weight: [400, 700] }
+      secondary: { family: "Inter", weight: [300, 400, 500, 600] }
+
+  platform_config:
+    meta:
+      account:
+        business_id: "BONFIRE_BM_ID"
+        ad_account_id: "act_BONFIRE"
+        page_id: "BONFIRE_PAGE_ID"
+        instagram_account_id: "BONFIRE_IG_ID"
+      campaign:
+        objectives_allowed: [OUTCOME_LEADS, OUTCOME_TRAFFIC]
+        special_ad_categories: ["NONE"]
+        default_status: PAUSED
+      creative:
+        primary_text: { max_length: 125 }
+        headline: { max_length: 40 }
+        cta_allowed: [LEARN_MORE, SIGN_UP, DOWNLOAD]
+        formats_allowed: [SINGLE_IMAGE, SINGLE_VIDEO, CAROUSEL]
+      validation:
+        dry_run_required: true
+
+    google_ads:
+      account:
+        customer_id: "BONFIRE_GOOGLE_CID"
+      campaign:
+        channel_types_allowed: [SEARCH, DISPLAY, DEMAND_GEN]
+        bidding_strategies_allowed: [MAXIMIZE_CONVERSIONS, TARGET_CPA]
+
+    tiktok:
+      account:
+        advertiser_id: "BONFIRE_TT_ID"
+      campaign:
+        objectives_allowed: [TRAFFIC, LEAD_GENERATION]
+      creative:
+        formats_allowed: [SINGLE_VIDEO, SPARK_ADS]
+
+# ─────────────────────────────────────────────────────────
+# RELATIONSHIPS
+#
+# The only variable per affiliate is their .cr3st4n1 hash.
+# Issue credential -> compute SHA-256 -> plug it in below.
+# That is the entire onboarding flow.
+# ─────────────────────────────────────────────────────────
+relationships:
+  - actor_ref: "{{ACTOR_CR3ST4N1_HASH}}"
+    actor_name: "{{ACTOR_NAME}}"
+    type: "affiliate"
+    compensation:
+      model: "commission"
+      rate: 0.10
+      currency: "USD"
+      settlement: "usdc_base_l2"
+      protocol_fee_bps: 1000
+      max_affiliate_bps: 4000
+      tiers:
+        - { name: "Bronze", threshold_sales: 0, rate_bps: 1500 }
+        - { name: "Silver", threshold_sales: 10, rate_bps: 2200 }
+        - { name: "Gold", threshold_sales: 50, rate_bps: 3000 }
+        - { name: "Diamond", threshold_sales: 200, rate_bps: 4000 }
+      auto_tier_promotion: true
+    authority:
+      brand_voice: false
+      spend: false
+      create_assets: true
+      comparative_claims: false
+      live_video: true
+      platforms: ["instagram", "tiktok", "youtube", "twitter", "blog", "podcast"]
+      operations:
+        granted:
+          - "organic_post.create"
+          - "story.create"
+          - "video.create"
+          - "referral_link.generate"
+        withheld:
+          - "campaign.create"
+          - "adcreative.create"
+          - "spend.allocate"
+      spend_ceiling_monthly: 0
+    duration:
+      start: "{{ENROLLMENT_DATE}}"
+      end: null
+      notice_days: 7
+    provenance:
+      contract_provider: "hellosign"
+      contract_template: "bonfire_affiliate"
+    status: "active"
+
+legal:
+  jurisdictions:
+    - id: "US"
+      policy_packs:
+        - "ftc-endorsement-guides-2024.1"
+    - id: "EU"
+      policy_packs:
+        - "eu-dsa-ad-transparency-2024"
+        - "eu-ai-act-article50-2026"
+        - "gdpr-consent-tracking"
+    - id: "GB"
+      policy_packs:
+        - "asa-cap-code-ed12"
+    - id: "AU"
+      policy_packs:
+        - "au-acl-section18"
+        - "au-aana-code-disclosure"
+    - id: "CA"
+      policy_packs:
+        - "ca-competition-act-74.01"
+        - "ca-casl"
+
+disclosures:
+  platform_renderings:
+    instagram:
+      branded_content:
+        method: "platform_toggle"
+        api_field: "branded_content_sponsor_page_id"
+        value: "{{brand.platform_config.meta.account.page_id}}"
+      ad_label:
+        method: "caption_prefix"
+        text: "#ad"
+        position: "first_word"
+    youtube:
+      branded_content:
+        method: "paid_promotion_checkbox"
+        api_field: "paidProductPlacementDetails.hasPaidProductPlacement"
+        value: true
+    tiktok:
+      branded_content:
+        method: "branded_content_toggle"
+        api_field: "is_branded_content"
+        value: true
+    blog:
+      affiliate_disclosure:
+        method: "disclosure_block"
+        position: "above_fold"
+        text: "This post contains affiliate links. I earn a commission on purchases made through these links."
+    podcast:
+      affiliate_disclosure:
+        method: "verbal"
+        timing: "before_mention"
+        script: "Quick disclosure - I am a Bonfire affiliate. Link in the description."
+
+protocol:
+  chain: "base"
+  settlement_token: "USDC"
+  contracts:
+    protocol: "0x..."
+    credential: "0x..."
+    audit: "0x..."
+  constants:
+    protocol_fee_bps: 1000
+    max_affiliate_bps: 4000
+    signature_expiry_seconds: 86400
+  eip712:
+    domain_name: "M3M3TICProtocol"
+    domain_version: "1"
+    chain_id: 8453
+
+_signature:
+  algorithm: "Ed25519"
+  signed_at: "2026-05-17T00:00:00Z"
+  signature: "base64:..."
