@@ -1,0 +1,416 @@
+# Jurisdiction Dependency Graph - Machine Readable
+# Version: 2.0.0
+# Generated: 2026-05-17
+# Engine: OPA/Rego v0.60+
+# Evaluation: deny_union (most restrictive wins)
+
+version: "2.0.0"
+evaluation_mode: "deny_union"
+conflict_resolution: "most_restrictive_wins"
+temporal_priority: "latest_effective_date"
+geographic_priority: "narrowest_scope"
+
+tiers:
+  tier1:
+    - code: "EU"
+      name: "European Union"
+      type: "supranational"
+      laws:
+        - id: "GDPR"
+          name: "General Data Protection Regulation"
+          reference: "Regulation (EU) 2016/679"
+        - id: "UCPD"
+          name: "Unfair Commercial Practices Directive"
+          reference: "Directive 2005/29/EC"
+        - id: "DSA"
+          name: "Digital Services Act"
+          reference: "Regulation (EU) 2022/2065"
+      policy_packs:
+        - "m3m3tic.policy.eu.dsa_transparency"
+      children: ["EEA"]
+
+    - code: "US"
+      name: "United States"
+      type: "federal"
+      laws:
+        - id: "FTC_ACT_S5"
+          name: "FTC Act Section 5"
+          reference: "15 U.S.C. 45"
+        - id: "FTC_ENDORSEMENT"
+          name: "FTC Endorsement Guides"
+          reference: "16 CFR Part 255 (2023 revision)"
+      policy_packs:
+        - "m3m3tic.policy.us.ftc_endorsement"
+      children: ["US-CA", "US-NY"]
+
+    - code: "CN"
+      name: "China"
+      type: "national"
+      laws:
+        - id: "AD_LAW_2021"
+          name: "Advertising Law of the PRC"
+          reference: "2021 revision"
+        - id: "DEEP_SYNTHESIS"
+          name: "Provisions on Deep Synthesis"
+          reference: "2023-01-10"
+        - id: "PIPL"
+          name: "Personal Information Protection Law"
+          reference: "2021-11-01"
+      policy_packs:
+        - "m3m3tic.policy.cn.advertising_law"
+      children: []
+
+    - code: "RU"
+      name: "Russian Federation"
+      type: "national"
+      laws:
+        - id: "38_FZ"
+          name: "Federal Law On Advertising"
+          reference: "No. 38-FZ (2006, amended 2023)"
+      policy_packs:
+        - "m3m3tic.policy.ru.erid_registration"
+      children: []
+
+    - code: "GB"
+      name: "United Kingdom"
+      type: "national"
+      laws:
+        - id: "CAP_CODE"
+          name: "ASA CAP Code"
+          reference: "Edition 12"
+        - id: "UK_GDPR"
+          name: "UK GDPR"
+          reference: "2021"
+        - id: "ONLINE_SAFETY"
+          name: "Online Safety Act"
+          reference: "2023"
+      policy_packs:
+        - "m3m3tic.policy.gb.asa_cap"
+      children: ["AU", "CA"]
+
+    - code: "JP"
+      name: "Japan"
+      type: "national"
+      laws:
+        - id: "PREMIUMS_REPRESENTATIONS"
+          name: "Act against Unjustifiable Premiums and Misleading Representations"
+          reference: "Stealth Marketing Designation 2023-10-01"
+      policy_packs:
+        - "m3m3tic.policy.jp.stealth_marketing_2023"
+      children: []
+
+    - code: "KR"
+      name: "South Korea"
+      type: "national"
+      laws:
+        - id: "FAIR_LABELING"
+          name: "Fair Labeling and Advertising Act"
+          reference: "KFTC"
+        - id: "AI_BASIC_ACT"
+          name: "AI Basic Act"
+          reference: "Effective 2026-01-01"
+      policy_packs:
+        - "m3m3tic.policy.kr.fair_labeling_disclosure"
+        - "m3m3tic.policy.kr.ai_basic_act_2026"
+      children: []
+
+    - code: "BR"
+      name: "Brazil"
+      type: "national"
+      laws:
+        - id: "CDC"
+          name: "Consumer Defense Code"
+          reference: "Art. 36-37"
+        - id: "CONANDA_163"
+          name: "CONANDA Resolution 163"
+          reference: "2014-04-04"
+        - id: "LGPD"
+          name: "Lei Geral de Protecao de Dados"
+          reference: "2020-09-18"
+      policy_packs:
+        - "m3m3tic.policy.br.cdc_disclosure"
+      children: []
+
+    - code: "IN"
+      name: "India"
+      type: "national"
+      laws:
+        - id: "CCPA_ENDORSEMENT"
+          name: "CCPA Endorsement Guidelines"
+          reference: "2022-06-09"
+        - id: "DMR_ACT"
+          name: "Drugs and Magic Remedies Act"
+          reference: "1954 (54 disease categories)"
+      policy_packs:
+        - "m3m3tic.policy.in.ccpa_endorsement_2022"
+      children: []
+
+    - code: "NG"
+      name: "Nigeria"
+      type: "national"
+      laws:
+        - id: "ARCON_ACT"
+          name: "ARCON Act"
+          reference: "2022-05-25"
+      policy_packs:
+        - "m3m3tic.policy.ng.arcon_prevetting"
+      children: []
+
+  tier2:
+    - code: "EEA"
+      name: "European Economic Area"
+      type: "regional"
+      parent: "EU"
+      additional_members: ["NO", "IS", "LI"]
+      inherits_all: true
+      policy_packs: []  # inherits EU packs
+      children: ["DE", "FR", "IT", "ES", "NL"]
+
+    - code: "GCC"
+      name: "Gulf Cooperation Council"
+      type: "regional"
+      parent: null
+      members: ["AE", "SA", "QA", "BH", "KW", "OM"]
+      base_requirements:
+        - "islamic_content_compliance"
+        - "national_media_license"
+        - "no_alcohol_promotion"
+        - "no_gambling_promotion"
+        - "religious_respect"
+      policy_packs:
+        - "m3m3tic.policy.gcc.base_compliance"
+      children: ["AE", "SA"]
+
+    - code: "ASEAN"
+      name: "Association of Southeast Asian Nations"
+      type: "regional"
+      parent: null
+      members: ["SG", "MY", "TH", "ID", "PH", "VN", "MM", "KH", "LA", "BN"]
+      base_requirements:
+        - "consumer_protection"
+        - "digital_framework_2025"
+      policy_packs:
+        - "m3m3tic.policy.asean.digital_framework"
+      children: ["SG", "MY"]
+
+    - code: "LATAM"
+      name: "Latin America"
+      type: "regional"
+      parent: null
+      members: ["BR", "MX", "AR", "CL", "CO", "PE"]
+      base_requirements:
+        - "consumer_code_compliance"
+        - "local_language_required"
+        - "children_advertising_restricted"
+      policy_packs:
+        - "m3m3tic.policy.latam.consumer_protection"
+      children: ["BR", "MX", "AR"]
+
+    - code: "COMMONWEALTH"
+      name: "Commonwealth Nations"
+      type: "regional"
+      parent: "GB"
+      inherits_principles: true
+      children: ["AU", "CA", "NZ", "IN", "NG"]
+
+    - code: "PACIFIC"
+      name: "Pacific Region"
+      type: "regional"
+      parent: null
+      members: ["AU", "NZ"]
+      children: ["AU", "NZ"]
+
+  tier3:
+    - code: "AE"
+      name: "United Arab Emirates"
+      parent: "GCC"
+      laws:
+        - id: "DECREE_34_2023"
+          name: "Federal Decree-Law No. 34/2023"
+        - id: "NMC_RESOLUTION"
+          name: "NMC Resolution No. 20/2010"
+      unique_requirements:
+        - "media_license_required"
+        - "influencer_licensing_mandatory"
+        - "religion_respect_mandatory"
+        - "societal_values_compliance"
+      policy_packs:
+        - "m3m3tic.policy.ae.media_license"
+
+    - code: "SA"
+      name: "Saudi Arabia"
+      parent: "GCC"
+      laws:
+        - id: "ECOMMERCE_2019"
+          name: "E-Commerce Law 2019"
+        - id: "MCSGA_REGS"
+          name: "MCSGA Regulations"
+      unique_requirements:
+        - "mawthooq_license_required"
+        - "islamic_compliance_strict"
+        - "arabic_preferred"
+      policy_packs:
+        - "m3m3tic.policy.sa.mawthooq"
+
+    - code: "SG"
+      name: "Singapore"
+      parent: "ASEAN"
+      laws:
+        - id: "PDPA"
+          name: "Personal Data Protection Act 2012"
+        - id: "MAS_FAIR_DEALING"
+          name: "MAS Guidelines on Fair Dealing"
+        - id: "FICA"
+          name: "Foreign Interference (Countermeasures) Act"
+      unique_requirements:
+        - "pdpa_consent_behavioral"
+        - "mas_financial_compliance"
+        - "ai_disclosure_recommended"
+      policy_packs:
+        - "m3m3tic.policy.sg.pdpa_ai_governance"
+
+    - code: "TR"
+      name: "Turkey"
+      parent: null
+      laws:
+        - id: "LAW_7416"
+          name: "E-Commerce Law No. 7416"
+        - id: "LAW_6502"
+          name: "Consumer Protection Law No. 6502"
+      unique_requirements:
+        - "local_representative_1m_users"
+        - "ad_spend_cap_2_percent"
+        - "influencer_registration"
+      policy_packs:
+        - "m3m3tic.policy.tr.ecommerce_platform"
+
+    - code: "MX"
+      name: "Mexico"
+      parent: "LATAM"
+      laws:
+        - id: "LFPC"
+          name: "Ley Federal de Proteccion al Consumidor"
+        - id: "NOM_051"
+          name: "NOM-051-SCFI/SSA1-2010 (amended 2025)"
+      unique_requirements:
+        - "nom051_warning_labels"
+        - "spanish_required"
+        - "children_food_restricted"
+      policy_packs:
+        - "m3m3tic.policy.mx.profeco_nom051"
+
+    - code: "IL"
+      name: "Israel"
+      parent: null
+      laws:
+        - id: "CONSUMER_PROTECTION_1981"
+          name: "Consumer Protection Law 1981"
+      unique_requirements:
+        - "hebrew_required"
+        - "comparative_ads_restricted"
+      policy_packs:
+        - "m3m3tic.policy.il.consumer_protection"
+
+    - code: "AU"
+      name: "Australia"
+      parent: "COMMONWEALTH"
+      laws:
+        - id: "ACL"
+          name: "Australian Consumer Law"
+        - id: "AANA_CODE"
+          name: "AANA Code of Ethics"
+      unique_requirements:
+        - "accc_enforcement"
+        - "therapeutic_goods_tga"
+      policy_packs:
+        - "m3m3tic.policy.au.acl_endorsement"
+
+    - code: "CA"
+      name: "Canada"
+      parent: "COMMONWEALTH"
+      laws:
+        - id: "COMPETITION_ACT"
+          name: "Competition Act s.74"
+        - id: "CASL"
+          name: "Canada Anti-Spam Legislation"
+        - id: "QUEBEC_CPA"
+          name: "Quebec Consumer Protection Act"
+      unique_requirements:
+        - "casl_consent"
+        - "quebec_french_mandatory"
+      policy_packs:
+        - "m3m3tic.policy.ca.competition_act"
+
+# Evaluation order (bottom-up):
+# 1. Apply Tier 3 country overlay
+# 2. Merge with Tier 2 regional base
+# 3. Merge with Tier 1 canonical (if applicable)
+# 4. Union all deny[] results
+# Result: most restrictive combination applies
+
+policy_registry:
+  - id: "m3m3tic.policy.jp.stealth_marketing_2023"
+    file: "jp/stealth-marketing-2023.rego"
+    jurisdiction: "JP"
+    status: "active"
+    effective: "2023-10-01"
+
+  - id: "m3m3tic.policy.kr.fair_labeling_disclosure"
+    file: "kr/fair-labeling-disclosure.rego"
+    jurisdiction: "KR"
+    status: "active"
+    effective: "2020-09-01"
+
+  - id: "m3m3tic.policy.kr.ai_basic_act_2026"
+    file: "kr/ai-basic-act-2026.rego"
+    jurisdiction: "KR"
+    status: "active"
+    effective: "2026-01-01"
+
+  - id: "m3m3tic.policy.br.cdc_disclosure"
+    file: "br/cdc-disclosure.rego"
+    jurisdiction: "BR"
+    status: "active"
+    effective: "1990-09-11"
+
+  - id: "m3m3tic.policy.in.ccpa_endorsement_2022"
+    file: "in/ccpa-endorsement-2022.rego"
+    jurisdiction: "IN"
+    status: "active"
+    effective: "2022-06-09"
+
+  - id: "m3m3tic.policy.ae.media_license"
+    file: "ae/media-license.rego"
+    jurisdiction: "AE"
+    status: "active"
+    effective: "2022-06-01"
+
+  - id: "m3m3tic.policy.sa.mawthooq"
+    file: "sa/mawthooq.rego"
+    jurisdiction: "SA"
+    status: "active"
+    effective: "2023-01-01"
+
+  - id: "m3m3tic.policy.ng.arcon_prevetting"
+    file: "ng/arcon-prevetting.rego"
+    jurisdiction: "NG"
+    status: "active"
+    effective: "2022-05-25"
+
+  - id: "m3m3tic.policy.sg.pdpa_ai_governance"
+    file: "sg/pdpa-ai-governance.rego"
+    jurisdiction: "SG"
+    status: "active"
+    effective: "2021-02-01"
+
+  - id: "m3m3tic.policy.tr.ecommerce_platform"
+    file: "tr/ecommerce-platform.rego"
+    jurisdiction: "TR"
+    status: "active"
+    effective: "2022-07-07"
+
+  - id: "m3m3tic.policy.mx.profeco_nom051"
+    file: "mx/profeco-nom051.rego"
+    jurisdiction: "MX"
+    status: "active"
+    effective: "2025-01-01"
