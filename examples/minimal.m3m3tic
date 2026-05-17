@@ -1,19 +1,2 @@
 m3m3tic:
-  version: "0.1.0"
-
-entity:
-  brand_name: "Acme Corp"
-  jurisdiction: "US"
-
-brand:
-  visual:
-    primary_colors:
-      - "#2563EB"
-      - "#1E40AF"
-    secondary_colors:
-      - "#FFFFFF"
-      - "#1F2937"
-
-  voice:
-    primary_tone: "professional"
-    uses_contractions: true
+  version: "0.2.0"
