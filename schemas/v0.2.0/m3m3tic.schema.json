@@ -1,0 +1,598 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://m3m3tic.dev/schemas/v0.2.0/m3m3tic.schema.json",
+  "title": "m3m3tic File Format v0.2.0",
+  "description": "Schema for the .m3m3tic file format, defining brand identity, relationships, claims, legal compliance, and on-chain protocol configuration.",
+  "type": "object",
+  "required": ["m3m3tic"],
+  "additionalProperties": false,
+  "properties": {
+    "m3m3tic": {
+      "type": "object",
+      "description": "File metadata and version declaration.",
+      "required": ["version"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Semantic version of the m3m3tic spec this file conforms to.",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 datetime when this file was created."
+        },
+        "generator": {
+          "type": "object",
+          "description": "Tool that generated this file.",
+          "properties": {
+            "tool": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "entity": {
+      "type": "object",
+      "description": "Legal and organizational identity of the entity.",
+      "properties": {
+        "legal_name": {
+          "type": "string",
+          "description": "Registered legal name of the entity."
+        },
+        "brand_name": {
+          "type": "string",
+          "description": "Public-facing brand name."
+        },
+        "domain": {
+          "type": "string",
+          "description": "Primary web domain."
+        },
+        "jurisdiction": {
+          "type": "string",
+          "description": "Primary jurisdiction of incorporation (ISO 3166-1 alpha-2).",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "operating_jurisdictions": {
+          "type": "array",
+          "description": "All jurisdictions where the entity operates.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "registrations": {
+          "type": "object",
+          "description": "Registration identifiers (e.g. ABN, EIN, VAT).",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "industry": {
+          "type": "object",
+          "description": "Industry classification.",
+          "properties": {
+            "iab_content_taxonomy_id": {
+              "type": "string"
+            },
+            "iab_ad_product_taxonomy_id": {
+              "type": "string"
+            }
+          }
+        },
+        "structure": {
+          "type": "object",
+          "description": "Organizational structure metadata.",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "model": {
+              "type": "string"
+            },
+            "distributor_count": {
+              "type": "integer"
+            },
+            "distributors_earning_monthly": {
+              "type": "integer"
+            },
+            "median_monthly_earnings_usd": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "brand": {
+      "type": "object",
+      "description": "Brand identity: voice, terminology, visual, and platform configuration.",
+      "properties": {
+        "voice": {
+          "type": "object",
+          "description": "Brand voice and tone guidelines.",
+          "properties": {
+            "personality": {
+              "type": "string"
+            },
+            "primary_tone": {
+              "type": "string"
+            },
+            "secondary_tones": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "avoided_tones": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "formality_level": {
+              "type": "string",
+              "enum": ["low", "medium", "high", "formal"]
+            },
+            "uses_contractions": {
+              "type": "boolean"
+            },
+            "context_overrides": {
+              "type": "object",
+              "description": "Context-specific tone overrides."
+            },
+            "good_examples": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "bad_examples": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "terminology": {
+          "type": "object",
+          "description": "Brand terminology and naming conventions.",
+          "properties": {
+            "preferred_terms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "preferred": {
+                    "type": "string"
+                  },
+                  "alternatives": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "contexts": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "prohibited_terms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "term": {
+                    "type": "string"
+                  },
+                  "reason": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "brand_name_casing": {
+              "type": "string"
+            },
+            "product_names": {
+              "type": "object",
+              "description": "Product name mappings."
+            },
+            "company_legal_name": {
+              "type": "string"
+            }
+          }
+        },
+        "visual": {
+          "type": "object",
+          "description": "Visual brand identity.",
+          "properties": {
+            "primary_colors": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              }
+            },
+            "secondary_colors": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              }
+            },
+            "accent_colors": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              }
+            },
+            "forbidden_colors": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              }
+            },
+            "logo_url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "fonts": {
+              "type": "object",
+              "description": "Font configuration."
+            }
+          }
+        },
+        "platform_config": {
+          "type": "object",
+          "description": "Per-platform configuration. Keys are platform names (e.g. meta, google_ads, tiktok).",
+          "additionalProperties": true
+        }
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "description": "Actors authorized to act on behalf of the entity.",
+      "items": {
+        "type": "object",
+        "required": ["actor_ref", "type"],
+        "properties": {
+          "actor_ref": {
+            "type": "string",
+            "description": "Unique reference identifier for the actor."
+          },
+          "actor_name": {
+            "type": "string",
+            "description": "Human-readable name of the actor."
+          },
+          "type": {
+            "type": "string",
+            "description": "Relationship type.",
+            "enum": ["agency", "affiliate", "influencer", "employee", "reseller", "franchisee", "advocate"]
+          },
+          "compensation": {
+            "type": "object",
+            "description": "Compensation terms for this relationship.",
+            "properties": {
+              "model": {
+                "type": "string",
+                "enum": ["retainer", "tiered_retainer", "commission", "flat_fee", "cpm", "cpc", "gifted", "unpaid", "equity"]
+              },
+              "currency": {
+                "type": "string"
+              },
+              "rate": {
+                "type": "number"
+              },
+              "tiers": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                }
+              },
+              "settlement": {
+                "type": "object"
+              },
+              "payment": {
+                "type": "object"
+              }
+            }
+          },
+          "authority": {
+            "type": "object",
+            "description": "Permissions and authority granted to this actor.",
+            "properties": {
+              "brand_voice": {
+                "type": "boolean"
+              },
+              "spend": {
+                "type": "boolean"
+              },
+              "create_assets": {
+                "type": "boolean"
+              },
+              "comparative_claims": {
+                "type": "boolean"
+              },
+              "live_video": {
+                "oneOf": [
+                  { "type": "boolean" },
+                  { "type": "string", "const": "conditional" }
+                ]
+              },
+              "platforms": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "operations": {
+                "type": "object",
+                "properties": {
+                  "granted": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "withheld": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "spend_ceiling_monthly": {
+                "type": "number"
+              },
+              "spend_ceiling_daily": {
+                "type": "number"
+              },
+              "approval_threshold": {
+                "type": "number"
+              },
+              "can_delegate": {
+                "type": "boolean"
+              },
+              "delegation_depth": {
+                "type": "integer"
+              },
+              "content_restrictions": {
+                "type": "object",
+                "description": "Content restriction rules for this actor."
+              }
+            }
+          },
+          "duration": {
+            "type": "object",
+            "description": "Temporal bounds of the relationship.",
+            "properties": {
+              "start": {
+                "type": "string",
+                "format": "date"
+              },
+              "end": {
+                "type": ["string", "null"],
+                "format": "date"
+              },
+              "notice_days": {
+                "type": "integer"
+              }
+            }
+          },
+          "approvals": {
+            "type": "array",
+            "description": "Approval workflows required for specific operations.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "operation": {
+                  "type": "string"
+                },
+                "requires": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "communication": {
+            "type": "object",
+            "description": "Communication preferences and reporting.",
+            "properties": {
+              "channels": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "reporting": {
+                "type": "string"
+              }
+            }
+          },
+          "provenance": {
+            "type": "object",
+            "description": "Contract provenance and signing metadata.",
+            "properties": {
+              "contract_provider": {
+                "type": "string"
+              },
+              "envelope_id": {
+                "type": "string"
+              },
+              "contract_template": {
+                "type": "string"
+              },
+              "signed_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of this relationship.",
+            "enum": ["active", "paused", "terminated", "expired"]
+          }
+        }
+      }
+    },
+    "claims": {
+      "type": "object",
+      "description": "Claim categories and their evidentiary requirements. Keys are claim category names (e.g. income, health).",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "evidence_required": {
+            "type": "boolean"
+          },
+          "approved_sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "required_context": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "required_disclaimers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "prohibited_without_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "legal": {
+      "type": "object",
+      "description": "Legal and regulatory compliance configuration.",
+      "required": ["jurisdictions"],
+      "properties": {
+        "jurisdictions": {
+          "type": "array",
+          "description": "Jurisdiction-specific legal policy packs.",
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "ISO 3166-1 alpha-2 code or regional identifier."
+              },
+              "policy_packs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "disclosures": {
+      "type": "object",
+      "description": "Disclosure rendering rules per platform and jurisdiction.",
+      "properties": {
+        "platform_renderings": {
+          "type": "object",
+          "description": "Per-platform disclosure rendering configuration. Keys are platform names.",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "method": {
+                "type": "string"
+              },
+              "api_field": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string"
+              },
+              "position": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "required_when": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "jurisdiction_text": {
+          "type": "object",
+          "description": "Jurisdiction-specific disclosure text. Keys are jurisdiction identifiers.",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "protocol": {
+      "type": "object",
+      "description": "On-chain protocol configuration for settlement and verification.",
+      "properties": {
+        "chain": {
+          "type": "string"
+        },
+        "settlement_token": {
+          "type": "string"
+        },
+        "contracts": {
+          "type": "object",
+          "description": "Deployed contract addresses."
+        },
+        "constants": {
+          "type": "object",
+          "description": "Protocol constants."
+        },
+        "eip712": {
+          "type": "object",
+          "description": "EIP-712 typed data signing configuration."
+        }
+      }
+    },
+    "_signature": {
+      "type": "object",
+      "description": "Cryptographic signature over the file contents.",
+      "properties": {
+        "algorithm": {
+          "type": "string"
+        },
+        "signed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "signature": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
