@@ -57,3 +57,37 @@ This specification is maintained by [Bonfire Terminal](https://bonfire.dev). See
 ## Implementations
 
 See [IMPLEMENTATIONS.md](IMPLEMENTATIONS.md) for tools that support the `.m3m3tic` format.
+
+---
+
+## On-Chain Protocol
+
+The M3M3TIC brand standard is enforced on-chain via three Solidity contracts deployed on Base L2:
+
+| Contract | Purpose | Repo |
+|----------|---------|------|
+| `M3M3TICProtocol` | Core 3-way affiliate split + EIP-712 verified sale (USDC) | [bonfire-contracts](https://github.com/johncrestani1/bonfire-contracts) |
+| `M3M3TICCredential` | Soulbound affiliate NFT (ERC-721 + ERC-5192) with auto-tier promotion | [bonfire-contracts](https://github.com/johncrestani1/bonfire-contracts) |
+| `M3M3TICAudit` | Merkle-root payout audit trail (zero-cost on-chain verification) | [bonfire-contracts](https://github.com/johncrestani1/bonfire-contracts) |
+
+**How `.m3m3tic` connects to on-chain:**
+
+1. A `.m3m3tic` brand file defines what content an affiliate can create
+2. A `.cr3st4n1` credential authorizes the affiliate (identity + device binding)
+3. The Bonfire daemon signs referral events using EIP-712 (alloy compile-time ABI binding)
+4. `M3M3TICProtocol.sol` verifies signatures on-chain and splits payments automatically
+
+**Protocol constants** (immutable in bytecode):
+- Protocol fee: 1000 BPS (10%) — M3M3TIC treasury, forever
+- Max affiliate: 4000 BPS (40%) — Diamond tier ceiling
+- Settlement: USDC on Base L2
+- Signature expiry: 86,400 seconds (24 hours)
+
+## Related Repositories
+
+| Repo | Purpose |
+|------|---------|
+| [bonfire-terminal](https://github.com/johncrestani1/bonfire-terminal) | Desktop app + Rust daemon (signs referrals) |
+| [bonfire-contracts](https://github.com/johncrestani1/bonfire-contracts) | CDD schemas + Solidity contracts |
+| [bonfire-dashboard](https://github.com/johncrestani1/bonfire-dashboard) | CI orchestrator + observability stack |
+| [cr3st4n1](https://github.com/johncrestani1/cr3st4n1) | Credential format spec (.cr3st4n1) |
