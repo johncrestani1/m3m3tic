@@ -66,8 +66,13 @@ brand:
 
 relationships:
   - actor_ref: "{{LARRY_CR3ST4N1_HASH}}"
-    actor_name: "Larry"
+    actor_name: "John Crestani"
     type: "affiliate"
+    impact:
+      partner_id: "1406803"
+      tracking_link: "https://go.try-hubspot.com/c/1406803/1242445/12893"
+      campaign_id: "1242445"
+      program_id: "12893"
     compensation:
       model: "commission"
       currency: "USD"
@@ -103,7 +108,9 @@ relationships:
       end: null
       notice_days: 30
     provenance:
-      contract_provider: "impact_radius"
+      contract_provider: "impact"
+      platform: "impact.com"
+      partner_id: "1406803"
       contract_template: "hubspot_solutions_partner_affiliate"
     status: "active"
 
