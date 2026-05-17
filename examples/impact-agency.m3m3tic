@@ -1,0 +1,316 @@
+m3m3tic:
+  version: "0.2.0"
+  created_at: "2026-05-17T00:00:00Z"
+  generator:
+    tool: "Bonfire Terminal"
+    version: "2.7.246"
+
+# ============================================================================
+# Impact.com — Partnership Infrastructure Platform
+# ============================================================================
+# This .m3m3tic demonstrates a PLATFORM INTERMEDIARY: Impact.com does not own
+# the brands it serves. It is the delegated operator managing affiliate/creator/
+# partnership programs ON BEHALF OF brands like HubSpot, Shopify, Uber, Lenovo.
+#
+# Impact.com's role: partnership infrastructure, tracking, attribution, payments,
+# contract automation, and fraud detection. They FACILITATE (not create) affiliate
+# content. Their relationship type with brands is "agency" — they manage other
+# people's affiliates.
+# ============================================================================
+
+entity:
+  legal_name: "Impact Tech, Inc."
+  brand_name: "impact.com"
+  domain: "impact.com"
+  jurisdiction: "US"
+  headquarters: "Santa Barbara, CA"
+  founded: 2008
+  operating_regions:
+    - "US"
+    - "GB"
+    - "EU"
+    - "AU"
+    - "CA"
+    - "JP"
+    - "IN"
+    - "SG"
+    - "ZA"
+  industry:
+    iab_content_taxonomy_id: "596"    # Technology & Computing
+    iab_ad_product_taxonomy_id: "1082" # Computer Software
+    vertical: "partnership_management_platform"
+  scale:
+    brands_served: 4500
+    partnerships_managed: 225000
+    annualized_gmv: "$120B"
+    arr: "$270M"
+
+brand:
+  voice:
+    personality: "Authoritative, data-driven, enterprise-grade. Speaks to CMOs and partnership directors."
+    primary_tone: "professional"
+    secondary_tones: ["confident", "analytical", "growth-oriented"]
+    avoided_tones: ["casual", "hype-driven", "salesy", "startup-bro"]
+    formality_level: "high"
+    uses_contractions: false
+    good_examples:
+      - "Manage every partnership type in a single platform — affiliates, influencers, B2B, and commerce content."
+      - "Automate contracting, tracking, and payouts across 225,000+ partnerships."
+      - "Drive measurable revenue growth through partner-led marketing."
+    bad_examples:
+      - "Sign up and make money fast with our affiliate program!"
+      - "The #1 way to go viral through partnerships!"
+      - "Crushing it with creator collabs!"
+  terminology:
+    preferred_terms:
+      - { preferred: "partnerships", alternatives: ["affiliate marketing", "referrals"] }
+      - { preferred: "partner-led marketing", alternatives: ["influencer marketing", "affiliate marketing"] }
+      - { preferred: "partnership economy", alternatives: ["gig economy", "creator economy"] }
+      - { preferred: "commerce content", alternatives: ["sponsored posts", "paid content"] }
+      - { preferred: "partnership automation", alternatives: ["affiliate tracking", "link tracking"] }
+    prohibited_terms:
+      - { term: "passive income", reason: "consumer affiliate language, not enterprise platform voice" }
+      - { term: "make money online", reason: "not aligned with enterprise positioning" }
+      - { term: "get rich", reason: "spam language" }
+    brand_name_casing: "impact.com"  # always lowercase
+  visual:
+    primary_colors: ["#5046E5", "#FFFFFF"]
+    secondary_colors: ["#1E1B4B", "#F0EFFF"]
+    accent_colors: ["#06B6D4", "#10B981"]
+  platform_config:
+    meta:
+      campaign:
+        objectives_allowed: [OUTCOME_LEADS, OUTCOME_TRAFFIC, OUTCOME_AWARENESS]
+        special_ad_categories: ["NONE"]
+      creative:
+        cta_allowed: [LEARN_MORE, SIGN_UP, GET_STARTED, CONTACT_US]
+    google_ads:
+      campaign:
+        channel_types_allowed: [SEARCH, DISPLAY, DEMAND_GEN, PERFORMANCE_MAX]
+    linkedin_ads:
+      campaign:
+        objectives_allowed: [LEAD_GENERATION, WEBSITE_VISITS, BRAND_AWARENESS]
+        targeting: ["CMO", "VP Marketing", "Director Partnerships", "Head of Affiliates"]
+
+# ============================================================================
+# RELATIONSHIPS
+# ============================================================================
+# Impact.com has TWO primary relationship types:
+#   1. EMPLOYEES — internal staff operating the platform
+#   2. CLIENT-BRANDS — brands that delegate partnership management to Impact
+#
+# Notably: Impact does NOT have "affiliates" in its .m3m3tic. It MANAGES
+# affiliates on behalf of its client-brands. The affiliates belong to the brands.
+# ============================================================================
+
+relationships:
+  # --- Employee Template ---
+  - actor_ref: "sha256:employee-credential-template"
+    actor_name: "Impact Employee (Template)"
+    type: "employee"
+    role: "partnership_manager"
+    authority:
+      brand_voice: true
+      spend: false
+      platform_access:
+        - "partnership_dashboard"
+        - "analytics"
+        - "partner_discovery"
+        - "contract_management"
+      operations:
+        granted:
+          - "partner.onboard"
+          - "partner.review"
+          - "contract.create"
+          - "contract.approve"
+          - "report.generate"
+          - "fraud.flag"
+        withheld:
+          - "spend.allocate"
+          - "brand_asset.modify"
+    duration:
+      start: "2024-01-01"
+      end: null
+    status: "template"
+
+  # --- Client-Brand Relationship Template (Agency Model) ---
+  # This shows how Impact.com acts as the AGENCY managing partnerships
+  # on behalf of a brand like HubSpot. Impact is the delegated operator.
+  - actor_ref: "sha256:hubspot-client-hash"
+    actor_name: "HubSpot"
+    type: "client_brand"
+    relationship_model: "agency"
+    description: "Impact.com operates as delegated partnership management agency for HubSpot's affiliate, creator, and B2B partner programs."
+    authority:
+      # What Impact is authorized to do on HubSpot's behalf:
+      brand_voice: false              # Impact does NOT speak as HubSpot
+      spend: true                     # Impact manages payout disbursement
+      spend_ceiling: "per_contract"   # Each partner contract defines its own ceiling
+      operations:
+        granted:
+          - "affiliate.recruit"
+          - "affiliate.onboard"
+          - "affiliate.contract"
+          - "affiliate.payout"
+          - "creator.discover"
+          - "creator.contract"
+          - "creator.payout"
+          - "tracking.implement"
+          - "attribution.configure"
+          - "fraud.detect"
+          - "fraud.block"
+          - "report.generate"
+          - "commission.calculate"
+          - "commission.disburse"
+        withheld:
+          - "brand_asset.create"      # HubSpot creates their own assets
+          - "brand_voice.speak_as"    # Impact never speaks AS HubSpot
+          - "pricing.modify"          # Product pricing is HubSpot's domain
+          - "campaign.direct_buy"     # Media buying stays with the brand
+    services_provided:
+      - "partner_discovery"           # Find and recruit new affiliates/creators
+      - "contract_automation"         # Electronic contracts with dynamic commissions
+      - "cross_device_tracking"       # Multi-touch attribution across devices
+      - "fraud_prevention"            # Click fraud, cookie stuffing detection
+      - "payment_processing"          # Global payouts in 70+ currencies
+      - "performance_reporting"       # Real-time dashboards and analytics
+      - "marketplace_access"          # Impact.com partner marketplace
+    integration:
+      type: "platform_api"
+      endpoints:
+        - "hubspot_crm_sync"
+        - "revenue_attribution"
+        - "lead_lifecycle_tracking"
+    compensation:
+      model: "platform_fee"
+      structure: "subscription_plus_usage"
+      note: "SaaS subscription + percentage of tracked GMV"
+    duration:
+      start: "2021-10-27"
+      end: null
+      notice_days: 90
+    status: "active"
+
+  # --- Second Client-Brand Example (Retail) ---
+  - actor_ref: "sha256:walmart-client-hash"
+    actor_name: "Walmart"
+    type: "client_brand"
+    relationship_model: "agency"
+    description: "Impact.com manages Walmart's affiliate and commerce content partnerships at scale."
+    authority:
+      brand_voice: false
+      spend: true
+      spend_ceiling: "per_contract"
+      operations:
+        granted:
+          - "affiliate.recruit"
+          - "affiliate.onboard"
+          - "affiliate.contract"
+          - "affiliate.payout"
+          - "tracking.implement"
+          - "attribution.configure"
+          - "fraud.detect"
+          - "commission.calculate"
+          - "commission.disburse"
+        withheld:
+          - "brand_asset.create"
+          - "brand_voice.speak_as"
+          - "pricing.modify"
+    services_provided:
+      - "partner_discovery"
+      - "contract_automation"
+      - "cross_device_tracking"
+      - "fraud_prevention"
+      - "payment_processing"
+      - "performance_reporting"
+    compensation:
+      model: "platform_fee"
+      structure: "subscription_plus_usage"
+    duration:
+      start: "2022-01-01"
+      end: null
+      notice_days: 90
+    status: "active"
+
+# ============================================================================
+# CLAIMS — what Impact.com can and cannot assert
+# ============================================================================
+
+claims:
+  platform_performance:
+    evidence_required: true
+    approved_sources:
+      - type: "internal_metrics"
+        requirements: ["audited_data", "time_bounded"]
+      - type: "client_case_study"
+        requirements: ["client_approval", "documented_methodology"]
+    prohibited_without_evidence:
+      - pattern: "best partnership platform"
+        always_prohibited: true
+      - pattern: "#1 platform"
+        unless: "citing specific third-party ranking with date"
+      - pattern: "guaranteed ROI"
+        always_prohibited: true
+
+# ============================================================================
+# LEGAL — Impact operates globally and must comply with all jurisdictions
+# where its client-brands' affiliates operate
+# ============================================================================
+
+legal:
+  jurisdictions:
+    - id: "US"
+      policy_packs:
+        - "ftc-endorsement-2024.1"
+        - "ftc-affiliate-disclosure"
+        - "ccpa"
+    - id: "EU"
+      policy_packs:
+        - "dsa"
+        - "gdpr"
+        - "ai-act"
+        - "eu-consumer-rights-directive"
+    - id: "GB"
+      policy_packs:
+        - "asa-cap-code-ed12"
+        - "uk-gdpr"
+        - "cma-green-claims"
+    - id: "AU"
+      policy_packs:
+        - "au-acl-section18"
+        - "au-aana-code-disclosure"
+        - "au-privacy-act"
+    - id: "CA"
+      policy_packs:
+        - "ca-competition-act-74.01"
+        - "pipeda"
+        - "casl"
+    - id: "JP"
+      policy_packs:
+        - "jp-act-against-unjustifiable-premiums"
+        - "jp-appi"
+  data_processing:
+    role: "data_processor"    # Impact processes data on behalf of client-brands (controllers)
+    sub_processors_disclosed: true
+    dpa_required: true
+    cross_border_transfer_mechanism: "SCCs"
+
+# ============================================================================
+# DISCLOSURES — Impact ensures its client-brands' affiliates comply
+# ============================================================================
+
+disclosures:
+  enforcement_role: "platform_operator"
+  note: "Impact.com enforces disclosure compliance on behalf of client-brands. Affiliates must comply with disclosure rules configured per-brand."
+  platform_renderings:
+    affiliate_links:
+      tracking_domain: "*.sjv.io"
+      disclosure_requirement: "per_client_brand_policy"
+    creator_content:
+      disclosure_requirement: "per_client_brand_policy"
+      enforcement: "contract_clause"
+
+_signature:
+  algorithm: "Ed25519"
+  signed_at: "2026-05-17T00:00:00Z"
+  signature: "base64:..."
