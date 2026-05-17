@@ -1,0 +1,176 @@
+m3m3tic:
+  version: "0.2.0"
+  created_at: "2026-05-17T00:00:00Z"
+  generator:
+    tool: "Bonfire Terminal"
+    version: "2.7.246"
+
+entity:
+  legal_name: "HubSpot, Inc."
+  brand_name: "HubSpot"
+  domain: "hubspot.com"
+  jurisdiction: "US"
+  operating_jurisdictions: ["US", "GB", "EU", "CA", "AU", "JP", "DE", "FR"]
+  registrations:
+    us_ein: "27-2972076"
+  industry:
+    iab_content_taxonomy_id: "596"
+    iab_ad_product_taxonomy_id: "1082"
+
+brand:
+  voice:
+    personality: "Educational, empowering, growth-focused. Helps businesses scale with inbound methodology."
+    primary_tone: "educational"
+    secondary_tones: ["empowering", "data-driven"]
+    avoided_tones: ["pushy", "fear-based", "jargon-heavy", "condescending"]
+    formality_level: "medium"
+    uses_contractions: true
+    good_examples:
+      - "Grow better with an all-in-one CRM platform."
+      - "Free tools to get you started. Premium features when you're ready."
+      - "Join 200,000+ businesses using HubSpot."
+    bad_examples:
+      - "Your competitors are using HubSpot. Are you falling behind?"
+      - "GUARANTEED 10X ROI ON YOUR MARKETING SPEND!"
+  terminology:
+    preferred_terms:
+      - { preferred: "CRM platform", alternatives: ["software", "tool"] }
+      - { preferred: "inbound marketing", alternatives: ["content marketing"] }
+      - { preferred: "grow better", alternatives: ["scale", "grow faster"] }
+    prohibited_terms:
+      - { term: "guaranteed ROI", reason: "no outcome guarantees" }
+      - { term: "replace Salesforce", reason: "named competitor disparagement policy" }
+      - { term: "the best CRM", reason: "superlative without qualification" }
+      - { term: "unlimited contacts", reason: "tier-based limits exist" }
+    brand_name_casing: "HubSpot"
+    product_names:
+      "Marketing Hub": "Marketing Hub"
+      "Sales Hub": "Sales Hub"
+      "Service Hub": "Service Hub"
+      "CMS Hub": "CMS Hub"
+      "Operations Hub": "Operations Hub"
+  visual:
+    primary_colors: ["#FF7A59", "#2E475D"]
+    secondary_colors: ["#FFFFFF", "#F5F8FA"]
+    accent_colors: ["#00BDA5"]
+  platform_config:
+    meta:
+      campaign:
+        objectives_allowed: [OUTCOME_LEADS, OUTCOME_TRAFFIC]
+        special_ad_categories: ["NONE"]
+      creative:
+        cta_allowed: [LEARN_MORE, SIGN_UP, GET_STARTED]
+    google_ads:
+      campaign:
+        channel_types_allowed: [SEARCH, DISPLAY, DEMAND_GEN, PERFORMANCE_MAX]
+
+relationships:
+  - actor_ref: "{{LARRY_CR3ST4N1_HASH}}"
+    actor_name: "Larry"
+    type: "affiliate"
+    compensation:
+      model: "commission"
+      currency: "USD"
+      rate: 0.30                       # 30% recurring for 12 months
+      recurring: true
+      recurring_months: 12
+      attribution: "last_click"
+      cookie_duration_days: 180
+      minimum_payout: 10.00
+    authority:
+      brand_voice: false
+      spend: false
+      create_assets: true
+      comparative_claims: true         # can compare CRMs (but not name Salesforce)
+      live_video: true
+      platforms: ["blog", "youtube", "twitter", "linkedin", "podcast", "email"]
+      operations:
+        granted:
+          - "organic_post.create"
+          - "video.create"
+          - "comparison_review.create"
+          - "tutorial.create"
+          - "referral_link.generate"
+        withheld:
+          - "campaign.create"
+          - "adcreative.create"
+          - "spend.allocate"
+      spend_ceiling_monthly: 0
+      content_restrictions:
+        named_competitors: ["Salesforce"]  # cannot name these in comparisons
+    duration:
+      start: "2025-01-15"
+      end: null
+      notice_days: 30
+    provenance:
+      contract_provider: "impact_radius"
+      contract_template: "hubspot_solutions_partner_affiliate"
+    status: "active"
+
+claims:
+  performance:
+    evidence_required: true
+    approved_sources:
+      - type: "official_stats"
+        source: "HubSpot published customer data"
+        url: "https://www.hubspot.com/roi"
+        max_age_days: 180
+      - type: "personal_experience"
+        requirements: ["active_account", "documented_use_case"]
+      - type: "third_party_review"
+        platforms: ["g2", "capterra", "trustradius"]
+        max_age_days: 90
+    prohibited_without_evidence:
+      - pattern: "X% increase in leads"
+        unless: "citing official case study or personal documented results"
+      - pattern: "saves X hours"
+        unless: "citing specific workflow with methodology"
+
+legal:
+  jurisdictions:
+    - id: "US"
+      policy_packs: ["ftc-endorsement-2024.1"]
+    - id: "EU"
+      policy_packs: ["eu-dsa-ad-transparency-2024", "gdpr-consent-tracking"]
+    - id: "GB"
+      policy_packs: ["asa-cap-code-ed12"]
+    - id: "CA"
+      policy_packs: ["ca-competition-act-74.01", "ca-casl"]
+    - id: "AU"
+      policy_packs: ["au-acl-section18"]
+    - id: "JP"
+      policy_packs: ["jp-stealth-marketing-2023"]
+
+disclosures:
+  platform_renderings:
+    blog:
+      affiliate_disclosure:
+        method: "disclosure_block"
+        position: "above_fold"
+        text: "Disclosure: I'm a HubSpot affiliate. If you sign up through my links, I earn a recurring commission. This doesn't affect my honest review."
+    youtube:
+      affiliate_disclosure:
+        method: "description_first_line"
+        text: "HubSpot affiliate links below — I earn recurring commission on signups."
+      branded_content:
+        method: "paid_promotion_checkbox"
+        api_field: "paidProductPlacementDetails.hasPaidProductPlacement"
+        value: true
+    linkedin:
+      affiliate_disclosure:
+        method: "post_prefix"
+        text: "#ad | HubSpot affiliate"
+    podcast:
+      affiliate_disclosure:
+        method: "verbal"
+        timing: "before_mention"
+        script: "HubSpot is an affiliate partner — I earn a commission if you sign up through my link."
+    email:
+      affiliate_disclosure:
+        method: "footer_line"
+        text: "Affiliate links: I earn commission on HubSpot signups at no cost to you."
+
+_signature:
+  algorithm: "Ed25519"
+  signed_at: "2026-05-17T00:00:00Z"
+  signature: "base64:..."
