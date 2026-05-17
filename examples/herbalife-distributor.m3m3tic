@@ -1,307 +1,404 @@
 m3m3tic:
-  version: "0.1.0"
-  created_at: "2026-05-15T10:30:00Z"
-  modified_at: "2026-05-15T10:30:00Z"
+  version: "0.2.0"
+  created_at: "2026-05-17T00:00:00Z"
   generator:
     tool: "Bonfire Terminal"
-    version: "2.7.245"
+    version: "2.7.246"
 
 entity:
   legal_name: "Herbalife International of America, Inc."
-  brand_name: "Maria's Herbalife Nutrition"
-  domain: "marias-nutrition.com"
+  brand_name: "Herbalife Nutrition"
+  domain: "herbalife.com"
   jurisdiction: "US"
-  industry: "mlm"
-  vertical: "health"
-  category:
-    id: "197871390225897"
-    name: "Smoothie & Juice Bar"
-  categories:
-    - id: "197871390225897"
-      name: "Smoothie & Juice Bar"
-    - id: "108472109230615"
-      name: "Health Food Store"
-  price_range: "$$"
-  franchise:
-    is_chain: true
-    global_brand_name: "Herbalife Nutrition"
-    franchise_brand_name: "Maria's Herbalife Nutrition"
-    partner_count: 4600000
-
-brand:
-  visual:
-    primary_colors:
-      - "#78BE20"
-      - "#00573F"
-    secondary_colors:
-      - "#FFFFFF"
-      - "#333333"
-    accent_colors:
-      - "#F7941D"
-    forbidden_colors:
-      - "#FF0000"
-      - "#0000FF"
-    logo_url: "assets/maria-herbalife-logo.png"
-
-  voice:
-    personality: >
-      Warm, encouraging, and knowledgeable. Like a friend who happens to know
-      a lot about nutrition. Never clinical or preachy.
-    primary_tone: "friendly"
-    secondary_tones:
-      - "encouraging"
-      - "knowledgeable"
-    avoided_tones:
-      - "clinical"
-      - "aggressive"
-      - "condescending"
-      - "desperate"
-    uses_contractions: true
-    context_overrides:
-      social:
-        tone: "casual"
-      email:
-        tone: "warm"
-      ad:
-        tone: "inviting"
-    good_examples:
-      - "Start your morning right with a smoothie packed with 24g of protein."
-      - "We're here every day 7am-3pm. Come say hi!"
-      - "Our Formula 1 shakes come in 12 delicious flavors."
-    bad_examples:
-      - "LOSE 20 LBS IN 30 DAYS WITH OUR MIRACLE SHAKES!!!"
-      - "Are you tired of being overweight?"
-      - "Make $5000/month working from home!"
-
-  terminology:
-    preferred_terms:
-      - preferred: "nutrition"
-        alternatives: ["diet", "food"]
-        contexts: ["all"]
-      - preferred: "wellness"
-        alternatives: ["health"]
-        contexts: ["marketing"]
-      - preferred: "smoothie"
-        alternatives: ["shake", "drink"]
-        contexts: ["menu", "social"]
-    prohibited_terms:
-      - term: "cure"
-        reason: "FDA prohibits disease cure claims for supplements"
-      - term: "miracle"
-        reason: "FTC considers 'miracle' an unsubstantiated claim"
-      - term: "guaranteed results"
-        reason: "FTC prohibits guaranteed outcome claims"
-      - term: "passive income"
-        reason: "Herbalife settlement prohibits unsupported income claims"
-      - term: "lose X pounds"
-        reason: "Specific weight loss claims require clinical substantiation"
-      - term: "FDA approved"
-        reason: "Supplements are not FDA-approved. Use 'FDA-compliant manufacturing'"
-      - term: "scientifically proven"
-        reason: "Requires cited peer-reviewed studies"
-      - term: "no side effects"
-        reason: "Safety claims require clinical evidence"
-      - term: "quit your job"
-        reason: "Employment-replacement claims violate Herbalife FTC settlement"
-      - term: "financial freedom"
-        reason: "Unsupported income opportunity claim"
-      - term: "be your own boss"
-        reason: "Employment-replacement claim without substantiation"
-      - term: "join my team"
-        reason: "Recruitment-over-product emphasis violates FTC MLM Act"
-    brand_name_casing: "Herbalife Nutrition"
-    product_names:
-      Formula 1: "Formula 1"
-      Prolessa Duo: "Prolessa Duo"
-      Herbal Tea Concentrate: "Herbal Tea Concentrate"
-      Protein Drink Mix: "Protein Drink Mix"
-      Herbalife24: "Herbalife24"
-    company_legal_name: "Herbalife International of America, Inc."
-
-platforms:
-  meta:
-    campaign:
-      special_ad_categories:
-        - "NONE"
-      objective_allowed:
-        - OUTCOME_LEADS
-        - OUTCOME_SALES
-        - OUTCOME_TRAFFIC
-      default_status: PAUSED
-    creative:
-      primary_text:
-        max_length: 125
-        required_disclosures:
-          - ftc_endorsement
-          - ai_generated
-      headline:
-        max_length: 40
-      description:
-        max_length: 30
-      cta_allowed:
-        - LEARN_MORE
-        - SIGN_UP
-        - SHOP_NOW
-      food_styles:
-        - "Vegan"
-        - "Breakfast"
-        - "Food Stands"
-    prohibited_patterns:
-      personal_attributes:
-        severity: block
-        examples:
-          - "Are you struggling with your weight?"
-          - "Do you have diabetes?"
-      unrealistic_outcomes:
-        severity: block
-      before_after_claims:
-        severity: block
-    validation:
-      dry_run_required: true
-      publish_default: PAUSED
-      fail_exit_code: 5
-    sponsor_page_id: "123456789"
-    sponsor_relationship: "independent_distributor"
-    endorsement_disclosure: "#ad | Herbalife Independent Distributor"
-
-legal:
-  ftc:
-    endorsement_guides:
-      disclosure_required: true
-      disclosure_terms:
-        - "ad"
-        - "sponsored"
-        - "affiliate"
-      disclosure_position: before_or_near_claim
-      applies_to:
-        - testimonial
-        - affiliate_link
-        - influencer_content
-
-  fda:
-    health_claims:
-      disease_claims_blocked: true
-      required_disclaimer_id: fda_notice
-      blocked_patterns:
-        - "cure"
-        - "treat diabetes"
-        - "reverse disease"
-
-  income_claims:
-    earnings_claims_require_disclosure: true
-    prohibited_patterns:
-      - "guaranteed income"
-      - "passive income"
-      - "financial freedom guaranteed"
-
-  privacy:
-    pii_in_ad_copy_blocked: true
-    sensitive_attributes_blocked:
-      - health_condition
-      - financial_status
-      - race
-      - religion
-      - age
-
-  disclaimers:
-    - title: "FDA Notice"
-      text: >
-        These statements have not been evaluated by the Food and Drug
-        Administration. This product is not intended to diagnose, treat,
-        cure, or prevent any disease.
-      url: "https://marias-nutrition.com/disclaimer"
-    - title: "Income Disclosure"
-      text: >
-        The incomes stated are not guaranteed. Herbalife distributor
-        compensation depends on many factors. Most distributors who pursue
-        the business opportunity earn less than $200 per month.
-      url: "https://marias-nutrition.com/income-disclosure"
-    - title: "Independent Distributor Notice"
-      text: >
-        Maria's Herbalife Nutrition is operated by an independent Herbalife
-        distributor. Herbalife products are sold exclusively through
-        independent distributors.
-      url: "https://marias-nutrition.com/about"
-
-  required_disclosures:
-    - trigger: "weight loss"
-      disclosure: "Results not typical. Individual results will vary."
-      regulation: "FTC Endorsement Guides"
-    - trigger: "income"
-      disclosure: "Most Herbalife distributors earn less than $200/month."
-      regulation: "Herbalife v. FTC Settlement (2016)"
-    - trigger: "protein"
-      disclosure: "As part of a balanced diet and healthy lifestyle."
-      regulation: "FDA DSHEA"
-    - trigger: "energy"
-      disclosure: "Contains caffeine. Not recommended for children or pregnant women."
-      regulation: "FDA Dietary Guidance"
-    - trigger: "testimonial"
-      disclosure: "Individual results may vary. This is not a guarantee of results."
-      regulation: "FTC Endorsement Guides Section 255.2"
-
-  jurisdictions:
+  operating_jurisdictions:
     - "US"
     - "CA"
     - "MX"
     - "GB"
+    - "DE"
+    - "FR"
+    - "ES"
+    - "IT"
     - "AU"
+    - "NZ"
+    - "JP"
+    - "KR"
+    - "CN"
+    - "IN"
+    - "BR"
+    - "ZA"
+    - "NG"
+    - "AE"
+    - "SA"
+    - "SG"
+    - "TH"
+    - "ID"
+    - "PH"
+    - "VN"
+    - "TR"
+    - "IL"
+  registrations:
+    us_ein: "95-3461763"
+  industry:
+    iab_content_taxonomy_id: "223"
+    iab_ad_product_taxonomy_id: "1123"
+  structure:
+    type: "direct_selling"
+    model: "multi_level_marketing"
+    distributor_count: 1945797
+    distributors_earning_monthly: 410626
+    median_monthly_earnings_usd: 0
 
-  regional_disclaimers:
-    US:
-      text: "Herbalife Independent Distributor"
-      regulation: "FTC MLM Act (16 CFR Part 437)"
-    CA:
-      text: "This product is a natural health product, not a drug."
-      regulation: "Health Canada NHP Regulations"
-    MX:
-      text: "Distribuidor Independiente de Herbalife"
-      regulation: "PROFECO Consumer Protection"
-    GB:
-      text: "Food supplement. Not a substitute for a varied diet."
-      regulation: "UK Food Standards Agency"
-    AU:
-      text: "This product is not listed on the ARTG."
-      regulation: "TGA Advertising Code"
+brand:
+  voice:
+    personality: "Warm, encouraging, knowledgeable. Like a friend who knows nutrition. Never clinical or preachy."
+    primary_tone: "friendly"
+    secondary_tones: ["encouraging", "knowledgeable"]
+    avoided_tones: ["clinical", "aggressive", "condescending", "desperate", "hype"]
+    formality_level: "medium"
+    uses_contractions: true
+    context_overrides:
+      social: { tone: "casual", formality_level: "low" }
+      ad: { tone: "inviting", formality_level: "medium" }
+      email: { tone: "warm", formality_level: "medium" }
+    good_examples:
+      - "Start your morning right with a smoothie packed with 24g of protein."
+      - "Our Formula 1 shakes come in 12 delicious flavors."
+      - "We're here every day 7am-3pm. Come say hi!"
+    bad_examples:
+      - "LOSE 20 LBS IN 30 DAYS WITH OUR MIRACLE SHAKES!!!"
+      - "Are you tired of being overweight?"
+      - "Make $5000/month working from home!"
+      - "Quit your 9-5 and join my team!"
 
-  regulations:
-    - "FTC Endorsement Guides"
-    - "FDA DSHEA (Dietary Supplement Health and Education Act)"
-    - "FTC MLM Act (16 CFR Part 437)"
-    - "Herbalife v. FTC Settlement (2016)"
-    - "CAN-SPAM Act"
-    - "CCPA (California Consumer Privacy Act)"
+  terminology:
+    preferred_terms:
+      - { preferred: "nutrition", alternatives: ["diet", "food"] }
+      - { preferred: "wellness", alternatives: ["health"] }
+      - { preferred: "smoothie", alternatives: ["shake", "drink"] }
+      - { preferred: "independent distributor", alternatives: ["rep", "seller", "agent"] }
+    prohibited_terms:
+      - { term: "cure", reason: "disease cure claims prohibited globally for supplements" }
+      - { term: "miracle", reason: "unsubstantiated superlative" }
+      - { term: "guaranteed results", reason: "no outcome guarantees for supplements or income" }
+      - { term: "passive income", reason: "FTC settlement: unsupported income claim" }
+      - { term: "quit your job", reason: "FTC settlement: employment-replacement claim" }
+      - { term: "financial freedom", reason: "unsupported income opportunity claim" }
+      - { term: "be your own boss", reason: "employment-replacement without substantiation" }
+      - { term: "join my team", reason: "recruitment-over-product emphasis" }
+      - { term: "no experience needed", reason: "misleading about effort required" }
+      - { term: "unlimited earning potential", reason: "misleading: 79% earn $0 in typical month" }
+      - { term: "risk-free", reason: "direct selling involves financial risk" }
+      - { term: "FDA approved", reason: "supplements are not FDA-approved" }
+      - { term: "scientifically proven", reason: "requires cited peer-reviewed studies" }
+      - { term: "no side effects", reason: "safety claims require clinical evidence" }
+      - { term: "lose X pounds", reason: "specific weight loss claims require clinical trial" }
+      - { term: "get rich", reason: "misleading income representation" }
+      - { term: "easy money", reason: "misleading about effort required" }
+      - { term: "ground floor opportunity", reason: "implies early-mover advantage in MLM" }
+    brand_name_casing: "Herbalife Nutrition"
+    product_names:
+      "Formula 1": "Formula 1"
+      "Prolessa Duo": "Prolessa Duo"
+      "Herbal Tea Concentrate": "Herbal Tea Concentrate"
+      "Protein Drink Mix": "Protein Drink Mix"
+      "Herbalife24": "Herbalife24"
+    company_legal_name: "Herbalife International of America, Inc."
 
-reporting:
-  xbrl:
-    taxonomy_namespace: "https://m3m3tic.dev/taxonomy/2026"
-    facts:
-      protocol_fee_revenue:
-        concept: "m3m3tic:ProtocolFeeRevenue"
-        unit: USD
-        source: "settlement.protocol_fee_total"
-      affiliate_commissions:
-        concept: "m3m3tic:AffiliateCommissionExpense"
-        unit: USD
-        source: "settlement.affiliate_payout_total"
-      ad_spend:
-        concept: "m3m3tic:AdvertisingSpend"
-        unit: USD
-        source: "platforms.meta.spend"
+  visual:
+    primary_colors: ["#78BE20", "#00573F"]
+    secondary_colors: ["#FFFFFF", "#333333"]
+    accent_colors: ["#F7941D"]
+    forbidden_colors: ["#FF0000", "#0000FF"]
+    logo_url: "assets/herbalife-nutrition-logo.svg"
+    fonts:
+      primary: { family: "Gotham", weight: [400, 700] }
+      secondary: { family: "Arial", weight: [400, 600] }
 
-provenance:
-  c2pa:
-    assertions:
-      brand_policy_hash:
-        source: "sha256(.m3m3tic)"
-      ai_generation_disclosure:
-        required: true
-      ftc_disclosure_validation:
-        source: "legal.ftc"
+  platform_config:
+    meta:
+      account:
+        business_id: "HERBALIFE_BM_ID"
+        ad_account_id: "act_HERBALIFE"
+        page_id: "HERBALIFE_PAGE_ID"
+        instagram_account_id: "HERBALIFE_IG_ID"
+      campaign:
+        objectives_allowed: [OUTCOME_LEADS, OUTCOME_SALES, OUTCOME_TRAFFIC]
+        special_ad_categories: ["NONE"]
+        default_status: PAUSED
+      creative:
+        primary_text: { max_length: 125 }
+        headline: { max_length: 40 }
+        cta_allowed: [LEARN_MORE, SIGN_UP, SHOP_NOW]
+        formats_allowed: [SINGLE_IMAGE, SINGLE_VIDEO, CAROUSEL]
+      validation:
+        dry_run_required: true
 
-enforcement:
-  fail_exit_code: 5
-  policy_packs:
-    - "ftc-endorsement"
-    - "fda-supplement"
-    - "income-claims"
+    google_ads:
+      account:
+        customer_id: "HERBALIFE_GOOGLE_CID"
+      campaign:
+        channel_types_allowed: [SEARCH, DISPLAY, DEMAND_GEN]
+
+    tiktok:
+      account:
+        advertiser_id: "HERBALIFE_TT_ID"
+      campaign:
+        objectives_allowed: [TRAFFIC, LEAD_GENERATION]
+      creative:
+        formats_allowed: [SINGLE_VIDEO, SPARK_ADS]
+
+# ─────────────────────────────────────────────────────────
+# RELATIONSHIPS — Distributor Template
+#
+# Each Herbalife distributor gets this relationship entry.
+# The ONLY variable is actor_ref (their .cr3st4n1 hash).
+# ─────────────────────────────────────────────────────────
+relationships:
+  - actor_ref: "{{DISTRIBUTOR_CR3ST4N1_HASH}}"
+    actor_name: "{{DISTRIBUTOR_NAME}}"
+    type: "franchisee"
+    compensation:
+      model: "commission"
+      currency: "USD"
+      settlement: "traditional"
+      structure: "multi_level"
+      # Herbalife compensation plan tiers
+      tiers:
+        - { name: "Distributor", discount_pct: 25, royalty_pct: 0 }
+        - { name: "Senior Consultant", discount_pct: 35, royalty_pct: 0 }
+        - { name: "Success Builder", discount_pct: 42, royalty_pct: 0 }
+        - { name: "Qualified Producer", discount_pct: 42, royalty_pct: 5 }
+        - { name: "Supervisor", discount_pct: 50, royalty_pct: 5 }
+        - { name: "World Team", discount_pct: 50, royalty_pct: 5 }
+        - { name: "Global Expansion Team", discount_pct: 50, royalty_pct: 5 }
+        - { name: "Millionaire Team", discount_pct: 50, royalty_pct: 5 }
+        - { name: "Presidents Team", discount_pct: 50, royalty_pct: 5 }
+      income_disclosure:
+        # 2024 actual data (published May 2025)
+        total_distributors_global: 1945797
+        pct_earning_in_typical_month: 21
+        typical_months_earning_per_year: 9
+        us_distributors_ordering: 113000
+        us_distributors_earning: 50600
+        source_url: "https://www.herbalife.com/content/dam/global-reusable-assets/documents/pd-statement-typical-distributor-earnings-en-us.pdf"
+        published_date: "2025-05-09"
+    authority:
+      brand_voice: false
+      spend: false
+      create_assets: true
+      comparative_claims: false
+      live_video: true
+      platforms: ["instagram", "tiktok", "youtube", "facebook", "blog", "whatsapp"]
+      operations:
+        granted:
+          - "organic_post.create"
+          - "story.create"
+          - "video.create"
+          - "referral_link.generate"
+        withheld:
+          - "campaign.create"
+          - "adcreative.create"
+          - "spend.allocate"
+      spend_ceiling_monthly: 0
+      # Content restrictions specific to distributors
+      content_restrictions:
+        income_claims: "evidence_required"
+        health_claims: "structure_function_only"
+        testimonials: "typicality_disclosure_required"
+        before_after: "prohibited"
+        recruitment_focus: "prohibited"
+    duration:
+      start: "{{ENROLLMENT_DATE}}"
+      end: null
+      notice_days: 30
+    provenance:
+      contract_provider: "herbalife_enrollment"
+      contract_template: "distributor_agreement"
+    status: "active"
+
+# ─────────────────────────────────────────────────────────
+# CLAIMS — Income Substantiation
+# ─────────────────────────────────────────────────────────
+claims:
+  income:
+    # Any income claim MUST cite this evidence
+    evidence_required: true
+    approved_sources:
+      - type: "official_disclosure"
+        document: "Statement of Typical Distributor Earnings"
+        url: "https://www.herbalife.com/en-us/footer/statement-of-typical-distributor-earnings"
+        published: "2025-05-09"
+        max_age_days: 365
+    required_context:
+      - "Most distributors who pursue the business opportunity earn less than $200 per month"
+      - "Only 21% of distributors received commissions in a typical month"
+      - "Results not typical. Individual results will vary."
+    prohibited_without_evidence:
+      - pattern: "earn $X"
+        unless: "citing official IDS with typicality statement"
+      - pattern: "make money"
+        unless: "accompanied by average earnings disclosure"
+      - pattern: "income opportunity"
+        unless: "full IDS link provided"
+      - pattern: "replace your income"
+        always_prohibited: true
+      - pattern: "six figures"
+        always_prohibited: true
+
+  health:
+    evidence_required: true
+    structure_function_allowed: true
+    disease_claims_blocked: true
+    approved_sources:
+      - type: "product_label"
+        scope: "claims matching approved label language only"
+    required_disclaimers:
+      - trigger: "any_health_claim"
+        text: "These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease."
+      - trigger: "weight_management"
+        text: "Results not typical. Individual results will vary. Use as part of a balanced diet and regular exercise."
+
+# ─────────────────────────────────────────────────────────
+# LEGAL — Jurisdiction declarations + policy packs
+# ─────────────────────────────────────────────────────────
+legal:
+  jurisdictions:
+    - id: "US"
+      policy_packs:
+        - "ftc-endorsement-2024.1"
+        - "mlm/income-claims-us"
+        - "mlm/ftc-herbalife-settlement-2016"
+        - "fda-dshea"
+    - id: "EU"
+      policy_packs:
+        - "eu-dsa-ad-transparency-2024"
+        - "eu-ai-act-article50-2026"
+        - "gdpr-consent-tracking"
+        - "mlm/ucpd-pyramid-scheme-ban"
+    - id: "GB"
+      policy_packs:
+        - "asa-cap-code-ed12"
+        - "mlm/asa-mlm-guidance"
+    - id: "AU"
+      policy_packs:
+        - "au-acl-section18"
+        - "au-aana-code-disclosure"
+        - "mlm/acl-pyramid-brightline"
+        - "au-tga-supplements"
+    - id: "CA"
+      policy_packs:
+        - "ca-competition-act-74.01"
+        - "ca-casl"
+        - "ca-quebec-french-language"
+        - "mlm/competition-act-s55"
+    - id: "JP"
+      policy_packs:
+        - "jp-stealth-marketing-2023"
+        - "mlm/asct-chain-transactions"
+    - id: "KR"
+      policy_packs:
+        - "kr-fair-labeling-disclosure"
+        - "mlm/door-to-door-sales-act"
+    - id: "CN"
+      policy_packs:
+        - "cn-advertising-law-absolute-terms"
+        - "mlm/cn-direct-selling-regs-2005"
+    - id: "IN"
+      policy_packs:
+        - "in-ccpa-endorsement-2022"
+        - "mlm/direct-selling-rules-2021"
+    - id: "BR"
+      policy_packs:
+        - "br-cdc-disclosure"
+        - "mlm/abevd-code"
+    - id: "MX"
+      policy_packs:
+        - "mx-profeco-nom051"
+        - "mlm/lfpc-direct-selling"
+    - id: "DE"
+      policy_packs:
+        - "mlm/uwg-income-claims"
+    - id: "FR"
+      policy_packs:
+        - "mlm/code-consommation-pyramid"
+    - id: "AE"
+      policy_packs:
+        - "ae-media-license"
+    - id: "SA"
+      policy_packs:
+        - "sa-mawthooq"
+    - id: "NG"
+      policy_packs:
+        - "ng-arcon-prevetting"
+
+# ─────────────────────────────────────────────────────────
+# DISCLOSURES — Platform-specific rendering
+# ─────────────────────────────────────────────────────────
+disclosures:
+  platform_renderings:
+    instagram:
+      distributor_status:
+        method: "caption_line"
+        text: "Herbalife Independent Distributor"
+        position: "bio_or_first_line"
+      branded_content:
+        method: "platform_toggle"
+        api_field: "branded_content_sponsor_page_id"
+        value: "{{brand.platform_config.meta.account.page_id}}"
+      income_disclosure:
+        method: "link_in_bio"
+        url: "{{claims.income.approved_sources[0].url}}"
+        required_when: "any_income_reference"
+    youtube:
+      distributor_status:
+        method: "description_line"
+        text: "I am an independent Herbalife Nutrition distributor."
+        position: "first_line"
+      income_disclosure:
+        method: "description_link"
+        url: "{{claims.income.approved_sources[0].url}}"
+      branded_content:
+        method: "paid_promotion_checkbox"
+        api_field: "paidProductPlacementDetails.hasPaidProductPlacement"
+        value: true
+    tiktok:
+      distributor_status:
+        method: "bio_text"
+        text: "Herbalife Independent Distributor"
+      branded_content:
+        method: "branded_content_toggle"
+        api_field: "is_branded_content"
+        value: true
+    blog:
+      distributor_status:
+        method: "disclosure_block"
+        position: "above_fold"
+        text: "I am an independent Herbalife Nutrition distributor. Products sold through independent distributors."
+      income_disclosure:
+        method: "inline_link"
+        text: "See Statement of Typical Distributor Earnings"
+        url: "{{claims.income.approved_sources[0].url}}"
+      health_disclaimer:
+        method: "footer_block"
+        text: "These statements have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease."
+
+  # Per-jurisdiction required text (evaluated by policy packs)
+  jurisdiction_text:
+    US: "Herbalife Independent Distributor"
+    CA: "This product is a natural health product, not a drug."
+    MX: "Distribuidor Independiente de Herbalife"
+    GB: "Food supplement. Not a substitute for a varied diet."
+    AU: "This product is not listed on the ARTG."
+    DE: "Herbalife Unabhängiger Berater"
+    FR: "Membre Indépendant Herbalife"
+    JP: "ハーバライフ独立ディストリビューター"
+    KR: "허벌라이프 독립 판매원"
+    BR: "Distribuidor Independente Herbalife"
+    CN: "康宝莱独立服务商"
+    IN: "Herbalife Independent Distributor"
+
+_signature:
+  algorithm: "Ed25519"
+  signed_at: "2026-05-17T00:00:00Z"
+  signature: "base64:..."
