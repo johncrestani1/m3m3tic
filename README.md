@@ -60,8 +60,8 @@ m3m3tic:
   version: "0.2.0"
 
 entity:
-  legal_name: "Ring Concierge LLC"
-  brand_name: "Ring Concierge"
+  legal_name: "Lumina Jewelry LLC"
+  brand_name: "Lumina Jewelry"
   operating_jurisdictions: ["US", "GB", "EU", "AU", "CA"]
 
 brand:
@@ -80,7 +80,7 @@ brand:
 
 relationships:
   - actor_ref: "sha256:abc123..."
-    actor_name: "Salvo Media LLC"
+    actor_name: "Apex Digital Agency LLC"
     type: "agency"
     compensation:
       model: "tiered_retainer"
@@ -92,7 +92,7 @@ relationships:
     status: "active"
 
   - actor_ref: "sha256:def456..."
-    actor_name: "Maria Gonzalez"
+    actor_name: "Sofia Martinez"
     type: "affiliate"
     compensation:
       model: "commission"
