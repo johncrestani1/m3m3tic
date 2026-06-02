@@ -1,4 +1,4 @@
-# Case Study: Herbalife Nutrition — First .m3m3tic Trial Deployment
+# Case Study: Herbalife Nutrition
 
 ## The Problem
 
